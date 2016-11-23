@@ -8,10 +8,15 @@ import android.app.Application;
  */
 
 public class ZhuoKeApplication extends Application {
+    private static ZhuoKeApplication instance=null;
+
+    public static ZhuoKeApplication getInstance(){
+        return instance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        instance=this;
     }
 }
