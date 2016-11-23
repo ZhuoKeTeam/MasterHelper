@@ -3,4 +3,5 @@
     <string name="action_settings">Settings</string>
     <string name="text">简单介绍</string>
     <string name="context_menu">Context menu</string>
+    <string name="fragment_main_title">主页</string>
 </resources>
