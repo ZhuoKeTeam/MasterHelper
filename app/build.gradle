@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.antfortune.freeline'
 
 
 android {
@@ -32,5 +33,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support:design:25.0.0'
+    compile files('libs/androidsvg-1.2.0.jar')
     testCompile 'junit:junit:4.12'
 }

@@ -4,19 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.team.zhuoke.masterhelper.utils.SharedPreferenceCommen;
+import com.team.zhuoke.masterhelper.widget.PathView;
 
 /**
  * Created by zhangchuanqiang on 2016/11/22.
  */
 
 public class SplashActivity extends AppCompatActivity {
+    PathView mPathView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        mPathView=(PathView)findViewById(R.id.pathView);
         initView();
     }
 
@@ -34,7 +38,12 @@ public class SplashActivity extends AppCompatActivity {
      * 正常启动
      */
     private void normal() {
-        new Handler().postDelayed(() -> next(), 1500);
+        mPathView.getPathAnimator().
+                delay(100).
+                duration(1400).
+                interpolator(new AccelerateDecelerateInterpolator()).
+                start();
+        new Handler().postDelayed(() -> next(), 1800);
     }
 
     private void next() {
