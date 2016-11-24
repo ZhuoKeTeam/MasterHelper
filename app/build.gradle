@@ -30,12 +30,20 @@ android {
 def SUPPORT_VERSION = "25.0.0"
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    // 必备库
+    compile "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
+    compile "com.android.support:design:${SUPPORT_VERSION}"
+
+    // 项目依赖库
+    compile 'com.zhy:okhttputils:2.6.2'
+    compile 'com.yalantis:contextmenu:1.0.7'
+    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'cn.trinea.android.common:trinea-android-common:4.2.15'
+
+    // 下面是单元测试
+    testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
-    compile "com.android.support:design:${SUPPORT_VERSION}"
-    testCompile 'junit:junit:4.12'
-    compile 'com.yalantis:contextmenu:1.0.7'
-    compile 'com.jakewharton:butterknife:5.1.1'
 }
