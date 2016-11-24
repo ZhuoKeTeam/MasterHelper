@@ -55,12 +55,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         new MainFragmentPresenter(this);
         mActivity.setSupportActionBar(mToolBar);
         mToolBar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDrawer();
-            }
-        });
+        mToolBar.setNavigationOnClickListener(menu -> openDrawer());
         setHasOptionsMenu(true);
 
 
@@ -144,12 +139,8 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
 
         void bindData(MainFragmentPresenter.VData data) {
             innerImage.setImageResource(data.resImg);
-            innerContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "横向Item被点", Toast.LENGTH_SHORT).show();
-                }
-            });
+            innerContainer.setOnClickListener(view ->
+                    Toast.makeText(view.getContext(), "竖向Item被点", Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -165,12 +156,8 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
 
         void bindData(MainFragmentPresenter.HData data) {
             innerImage.setImageResource(data.resImg);
-            innerContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "竖向Item被点", Toast.LENGTH_SHORT).show();
-                }
-            });
+            innerContainer.setOnClickListener(view ->
+                    Toast.makeText(view.getContext(), "横向Item被点", Toast.LENGTH_SHORT).show());
         }
     }
 }
