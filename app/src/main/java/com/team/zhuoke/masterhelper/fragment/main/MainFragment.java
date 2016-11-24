@@ -126,6 +126,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         mVerticalRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration decoration = new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL);
+        mVerticalRecycleView.setNestedScrollingEnabled(false);
         mVerticalRecycleView.addItemDecoration(decoration);
         mVerticalRecycleView.setAdapter(adapter);
     }
