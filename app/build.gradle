@@ -13,9 +13,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//        jackOptions {
-//            enabled true
-//        }
     }
     buildTypes {
         release {
@@ -46,6 +43,7 @@ dependencies {
 
     // 下面是单元测试
     testCompile 'junit:junit:4.12'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -54,4 +52,5 @@ dependencies {
     compile files('libs/androidsvg-1.2.0.jar')
     testCompile 'junit:junit:4.12'
 
+    compile files('libs/tbs_sdk_thirdapp_v2.5.0.1037_36880_minsize_obfs_20161110_102536.jar')
 }
