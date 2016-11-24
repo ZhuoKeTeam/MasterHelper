@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import com.team.zhuoke.masterhelper.activity.MainActivity;
 import com.team.zhuoke.masterhelper.utils.SharedPreferenceCommen;
 import com.team.zhuoke.masterhelper.widget.PathView;
 

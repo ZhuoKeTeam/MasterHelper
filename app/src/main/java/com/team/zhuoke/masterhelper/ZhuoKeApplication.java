@@ -1,6 +1,16 @@
 package com.team.zhuoke.masterhelper;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.cookie.CookieJarImpl;
+import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
+import com.zhy.http.okhttp.https.HttpsUtils;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Application
@@ -14,9 +24,42 @@ public class ZhuoKeApplication extends Application {
         return instance;
     }
 
+    private Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance=this;
+        mContext = this;
+
+        initOkHttpUtils();
+    }
+
+    /**
+     * 初始化网络请求
+     */
+    private void initOkHttpUtils() {
+        // Cookie
+        CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+        // Https
+        HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+                .cookieJar(cookieJar)
+                //其他配置
+                .build();
+        OkHttpUtils.initClient(okHttpClient);
+    }
+
+
+    public Context getmContext() {
+        return mContext;
+    }
+
+    public void setmContext(Context mContext) {
+        this.mContext = mContext;
     }
 }
