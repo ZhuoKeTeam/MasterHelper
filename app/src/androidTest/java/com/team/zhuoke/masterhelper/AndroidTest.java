@@ -7,10 +7,14 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.team.zhuoke.masterhelper.bean.MasterBean;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
 
 /**
  * 在这个目录下面的单元测试都需要 Android 环境，需要连接真机或者模拟器运行
@@ -58,6 +62,35 @@ public class AndroidTest {
                 Toast.makeText(context, "显示时间很短： hello", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+
+    @Test
+    public void masterList() {
+
+        String[] names = new String[] {"hongyang", "任玉刚", "Trinea", "胡凯", "郭霖"};
+
+//        JSONArray jsonArray = new JSONArray();
+
+        ArrayList list = new ArrayList();
+
+        for (int i = 0; i < names.length; i++) {
+            MasterBean masterBean = new MasterBean();
+
+            masterBean.setName(names[i]);
+            masterBean.setGrade(String.valueOf(i + 1));
+            masterBean.setVip(true);
+            masterBean.setWeiBo("");
+            masterBean.setZhiHu("");
+            masterBean.setInfo("");
+
+            list.add(masterBean);
+        }
+
+        System.out.println(list.toString());
+
+
+
     }
 
 }
