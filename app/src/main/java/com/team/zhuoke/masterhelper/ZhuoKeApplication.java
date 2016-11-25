@@ -3,6 +3,7 @@ package com.team.zhuoke.masterhelper;
 import android.app.Application;
 import android.content.Context;
 
+import com.team.zhuoke.masterhelper.utils.L;
 import com.tencent.smtt.sdk.QbSdk;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
@@ -33,6 +34,7 @@ public class ZhuoKeApplication extends Application {
         instance=this;
         mContext = this;
 
+        L.init();
         initOkHttpUtils();
 		
 		// 预加载X5
