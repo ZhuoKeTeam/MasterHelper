@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.team.zhuoke.masterhelper.bean.MasterBean;
+import com.team.zhuoke.masterhelper.utils.L;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -78,6 +79,13 @@ public class AndroidTest {
     }
 
     @Test
+    public void LogTest() {
+        L.i("test...i");
+        L.e("test...e");
+        L.d("test...d");
+    }
+
+    @Test
     public void testGuPiao() {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
@@ -132,6 +140,7 @@ public class AndroidTest {
 
             try {
                 JSONObject jsonObject = new JSONObject(masterBean.toString());
+                L.json(jsonObject.toString());
                 list.add(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
