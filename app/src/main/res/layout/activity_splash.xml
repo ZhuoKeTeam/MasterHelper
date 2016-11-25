@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/black"
+    >
+
+    <com.team.zhuoke.masterhelper.widget.PathView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pathView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:pathColor="@android:color/white"
+        app:svg="@raw/monitor"
+        app:pathWidth="5"/>
+
+</RelativeLayout>

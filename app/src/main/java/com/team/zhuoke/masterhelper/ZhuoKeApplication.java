@@ -1,6 +1,18 @@
 package com.team.zhuoke.masterhelper;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.team.zhuoke.masterhelper.utils.L;
+import com.tencent.smtt.sdk.QbSdk;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.cookie.CookieJarImpl;
+import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
+import com.zhy.http.okhttp.https.HttpsUtils;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Application
@@ -8,10 +20,52 @@ import android.app.Application;
  */
 
 public class ZhuoKeApplication extends Application {
+    private static ZhuoKeApplication instance=null;
+
+    public static ZhuoKeApplication getInstance(){
+        return instance;
+    }
+
+    private Context mContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        instance=this;
+        mContext = this;
 
+        L.init();
+        initOkHttpUtils();
+		
+		// 预加载X5
+        QbSdk.initX5Environment(getApplicationContext(), null);
+    }
+
+    /**
+     * 初始化网络请求
+     */
+    private void initOkHttpUtils() {
+        // Cookie
+        CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+        // Https
+        HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+                .cookieJar(cookieJar)
+                //其他配置
+                .build();
+        OkHttpUtils.initClient(okHttpClient);
+    }
+
+
+    public Context getmContext() {
+        return mContext;
+    }
+
+    public void setmContext(Context mContext) {
+        this.mContext = mContext;
     }
 }
