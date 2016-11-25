@@ -22,7 +22,7 @@ public class L {
 
         init(DEFAULT_TAG)
         .methodCount(3)
-        .logLevel(BuildConfig.ENABLE_DEBUG ? LogLevel.FULL : LogLevel.NONE);
+        .logLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
     }
 
     public static Settings init(String tag) {
@@ -46,19 +46,19 @@ public class L {
     }
 
     public static void i(String message, Object... args) {
-        Logger.e(message, args);
+        Logger.i(message, args);
     }
 
     public static void v(String message, Object... args) {
-        Logger.e(message, args);
+        Logger.v(message, args);
     }
 
     public static void w(String message, Object... args) {
-        Logger.e(message, args);
+        Logger.w(message, args);
     }
 
     public static void wtf(String message, Object... args) {
-        Logger.e(message, args);
+        Logger.wtf(message, args);
     }
 
     public static void json(String json) {
