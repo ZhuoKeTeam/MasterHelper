@@ -1,5 +1,6 @@
 package com.team.zhuoke.masterhelper.fragment.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.team.zhuoke.masterhelper.AboutUsActivity;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 
@@ -55,12 +57,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         new MainFragmentPresenter(this);
         mActivity.setSupportActionBar(mToolBar);
         mToolBar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDrawer();
-            }
-        });
+        mToolBar.setNavigationOnClickListener(menu -> openDrawer());
         setHasOptionsMenu(true);
 
 
@@ -78,6 +75,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         switch (item.getItemId()) {
             case R.id.context_menu:
                 Toast.makeText(mActivity, "菜单", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), AboutUsActivity.class));
                 break;
         }
         return true;
@@ -144,12 +142,8 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
 
         void bindData(MainFragmentPresenter.VData data) {
             innerImage.setImageResource(data.resImg);
-            innerContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "横向Item被点", Toast.LENGTH_SHORT).show();
-                }
-            });
+            innerContainer.setOnClickListener(view ->
+                    Toast.makeText(view.getContext(), "竖向Item被点", Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -165,12 +159,8 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
 
         void bindData(MainFragmentPresenter.HData data) {
             innerImage.setImageResource(data.resImg);
-            innerContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "竖向Item被点", Toast.LENGTH_SHORT).show();
-                }
-            });
+            innerContainer.setOnClickListener(view ->
+                    Toast.makeText(view.getContext(), "横向Item被点", Toast.LENGTH_SHORT).show());
         }
     }
 }

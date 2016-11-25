@@ -3,5 +3,16 @@
     <string name="action_settings">Settings</string>
     <string name="text">简单介绍</string>
     <string name="context_menu">Context menu</string>
+    <string name="groups_introduction">我们的宗旨就是：乐于分享，善于交流，让我们做点不一样的事情！</string>
+    <string name="group_s_introduction_eng">Group\'s introduction</string>
+    <string name="group_s_introduction_cn">团队描述</string>
+    <string name="concern_us_now">Concern us now!</string>
+    <string name="concern_us_cn">关注我们</string>
+    <string name="wx">微信公众号：gradleDev</string>
+    <string name="innermost_words">innermost words!</string>
+    <string name="innermost_words_cn">成员心语</string>
+    <string name="our_blog">官博：http://www.gdky005.com/</string>
+    <string name="our_github">Github：https://github.com/ZhuoKeTeam</string>
+    <string name="fengy_words">北京_Fengy：做程序员中才艺最多的人！</string>
     <string name="fragment_main_title">主页</string>
 </resources>
