@@ -1,5 +1,6 @@
 package com.team.zhuoke.masterhelper.fragment.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.team.zhuoke.masterhelper.AboutUsActivity;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 
@@ -73,6 +75,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         switch (item.getItemId()) {
             case R.id.context_menu:
                 Toast.makeText(mActivity, "菜单", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), AboutUsActivity.class));
                 break;
         }
         return true;
