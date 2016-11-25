@@ -35,6 +35,7 @@ def SUPPORT_VERSION = "25.0.0"
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
+
     // 必备库
     compile "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
     compile "com.android.support:design:${SUPPORT_VERSION}"
