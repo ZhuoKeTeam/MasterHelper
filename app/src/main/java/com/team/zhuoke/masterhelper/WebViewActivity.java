@@ -1,5 +1,6 @@
 package com.team.zhuoke.masterhelper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -56,6 +57,7 @@ public class WebViewActivity extends AppCompatActivity {
         initWebView();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void initWebView() {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override

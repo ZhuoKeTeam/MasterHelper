@@ -41,7 +41,6 @@ dependencies {
     compile 'com.yalantis:contextmenu:1.0.7'
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'cn.trinea.android.common:trinea-android-common:4.2.15'
-
     // log
     compile 'com.orhanobut:logger:1.15'
 
@@ -51,11 +50,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:design:25.0.0'
-    compile files('libs/androidsvg-1.2.0.jar')
-    testCompile 'junit:junit:4.12'
 
 
-    compile files('libs/tbs_sdk_thirdapp_v2.5.0.1037_36880_minsize_obfs_20161110_102536.jar')
+
 }
