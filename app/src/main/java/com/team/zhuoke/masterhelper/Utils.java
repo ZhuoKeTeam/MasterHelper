@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 
 public class Utils {
 
+    // TODO: 2016/11/26 总感觉怪怪的，有问题，需要好好看看，尤其是一些异常需要及时捕获
     public static boolean isNetworkConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

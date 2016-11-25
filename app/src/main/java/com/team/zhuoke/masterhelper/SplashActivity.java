@@ -44,6 +44,7 @@ public class SplashActivity extends AppCompatActivity {
                 duration(1400).
                 interpolator(new AccelerateDecelerateInterpolator()).
                 start();
+        // TODO: 2016/11/26  这个时间太短了，请修改为 3秒钟吧，最好给界面上弄个 倒计时的东西，这里容易出现内存泄漏，一定要注意避免。
         new Handler().postDelayed(() -> next(), 1800);
     }
 

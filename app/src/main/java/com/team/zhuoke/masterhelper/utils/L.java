@@ -6,6 +6,8 @@ import com.orhanobut.logger.Settings;
 import com.team.zhuoke.masterhelper.BuildConfig;
 
 /**
+ * // TODO: 2016/11/26 Demo 或者 单元测试呢？？？ 其他人只有要怎么用呢？
+ *
  * Created by Long
  * on 2016/11/24.
  */
