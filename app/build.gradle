@@ -39,11 +39,26 @@ dependencies {
     // 项目依赖库
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'com.yalantis:contextmenu:1.0.7'
-    compile 'com.jakewharton:butterknife:5.1.1'
     compile 'cn.trinea.android.common:trinea-android-common:4.2.15'
+    compile 'com.jakewharton:butterknife:8.1.0'
+//    网络依赖库日志打印
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     // log
     compile 'com.orhanobut:logger:1.15'
-
+    //RxJava and RxAndroid
+    compile 'io.reactivex:rxjava:1.1.8'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    //Retrofit2
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    //RxLifecycle 内存泄露
+    compile 'com.trello:rxlifecycle:0.6.1'
+    compile 'com.trello:rxlifecycle-components:0.6.1'
+    //    侧滑返回
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
+    //  全新适配方案
+    compile 'com.zhy:autolayout:1.4.5'
     // 下面是单元测试
     testCompile 'junit:junit:4.12'
     compile fileTree(include: ['*.jar'], dir: 'libs')
