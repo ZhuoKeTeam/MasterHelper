@@ -6,7 +6,6 @@ import com.team.zhuoke.masterhelper.model.ContractProxy;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 /**
@@ -27,7 +26,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
 
 //    定义Presenter
     protected  T mPresenter;
-    protected Unbinder unbinder;
 
 //    获取布局资源文件
     protected  abstract  int getLayoutId();
@@ -53,7 +51,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
 //            设置布局资源文件
              setContentView(getLayoutId());
 //            注解绑定
-            unbinder=  ButterKnife.bind(this);
+         ButterKnife.inject(this);
             bindPresenter();
             onInitView(savedInstanceState);
             onEvent();
@@ -90,9 +88,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
+       ButterKnife.reset(this);
         if(mPresenter!=null)
         {
             ContractProxy.getInstance().unbind(getContractClazz(),this);
