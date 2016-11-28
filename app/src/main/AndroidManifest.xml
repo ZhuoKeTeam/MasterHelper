@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutUsActivity"> </activity>
-        <activity android:name=".WebViewActivity" />
+        <activity android:name=".activity.WebViewActivity" />
     </application>
 
 </manifest>
