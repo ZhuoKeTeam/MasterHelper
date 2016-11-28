@@ -19,6 +19,7 @@ import com.team.zhuoke.masterhelper.fragment.main.MainFragment;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+@SuppressWarnings("RestrictedApi")
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BaseMainFragment.OnDrawerController {
     private static final String FRAGMENT_KEY = "_KEY";
     @InjectView(R.id.main_fl_container)
