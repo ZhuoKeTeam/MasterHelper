@@ -16,12 +16,13 @@ import com.team.zhuoke.masterhelper.widget.PathView;
 
 public class SplashActivity extends AppCompatActivity {
     PathView mPathView;
+    private static final int COUNTDOWN = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        mPathView=(PathView)findViewById(R.id.pathView);
+        mPathView = (PathView) findViewById(R.id.pathView);
         initView();
     }
 
@@ -41,15 +42,14 @@ public class SplashActivity extends AppCompatActivity {
     private void normal() {
         mPathView.getPathAnimator().
                 delay(100).
-                duration(1400).
+                duration(2000).
                 interpolator(new AccelerateDecelerateInterpolator()).
                 start();
-        // TODO: 2016/11/26  这个时间太短了，请修改为 3秒钟吧，最好给界面上弄个 倒计时的东西，这里容易出现内存泄漏，一定要注意避免。
-        new Handler().postDelayed(() -> next(), 1800);
+        new Handler().postDelayed(() -> next(), COUNTDOWN);
     }
 
     private void next() {
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
