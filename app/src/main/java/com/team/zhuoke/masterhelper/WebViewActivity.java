@@ -1,4 +1,4 @@
-package com.team.zhuoke.masterhelper.activity;
+package com.team.zhuoke.masterhelper;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,8 +9,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.team.zhuoke.masterhelper.R;
-import com.team.zhuoke.masterhelper.Utils;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
@@ -19,12 +17,11 @@ import com.tencent.smtt.sdk.WebViewClient;
 /**
  * Created by renxl on 2016/11/24.
  *
+ * // TODO: 2016/11/26  跳转 WebViewActivity 界面的时候不要让其他人 关心需要怎么传参数，只需要 传入参数即可。写一个 PageCtrl 的类来做 所有 Activity 的跳转。试试做做
+ *
  * email: renxuelongvip@163.com
  */
 public class WebViewActivity extends AppCompatActivity {
-
-    private static final String WEB_URL = "web_url";
-    private static final String WEB_TITLE = "web_title";
 
     private WebView mWebView;
     private ProgressBar mProgressBar;
@@ -37,8 +34,10 @@ public class WebViewActivity extends AppCompatActivity {
      */
     public static void showWebViewActivity(Context context, String url, String title) {
         Intent intent = new Intent(context, WebViewActivity.class);
-        intent.putExtra(WEB_URL, url);
-        intent.putExtra(WEB_TITLE, title);
+
+        // TODO: 2016/11/26  这些地方是需要常量的，别直接给里面写字符串，要复用。这样写容易出错，也不太好统一起来。
+        intent.putExtra("web_url", url);
+        intent.putExtra("web_title", title);
         context.startActivity(intent);
     }
 
@@ -48,8 +47,9 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_view);
 
         Intent intent = getIntent();
-        String url = intent.getStringExtra(WEB_URL);
-        String title = intent.getStringExtra(WEB_TITLE);
+        // // TODO: 2016/11/26  常量问题
+        String url = intent.getStringExtra("web_url");
+        String title = intent.getStringExtra("web_title");
         setTitle(title);
 
         initView();
