@@ -14,6 +14,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,21 +25,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.team.zhuoke.masterhelper.AboutUsActivity;
 import com.team.zhuoke.masterhelper.R;
+import com.team.zhuoke.masterhelper.bean.MasterInfoBean;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.request.RequestCall;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import okhttp3.Call;
 
 public class MainFragment extends BaseMainFragment implements MainFragmentContract.IMainFragmentView, OnMenuItemClickListener {
+
+    private static final String TAG = "MainFragment";
 
     @InjectView(R.id.main_fragment_tb_bar)
     Toolbar mToolBar;
@@ -76,6 +85,35 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         initMenuFragment();
         setHasOptionsMenu(true);
         initTitle(view);
+
+        String url = "https://zkteam.wilddogio.com/master_list.json";
+        RequestCall requestCall = OkHttpUtils.get().url(url).build();
+        requestCall.execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.d(TAG, "onError() called with: call = [" + call + "], e = [" + e + "], id = [" + id + "]");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                Log.d(TAG, "onResponse() called with: response = [" + response + "], id = [" + id + "]");
+
+                Gson gson = new Gson();
+                MasterInfoBean masterInfoBean = gson.fromJson(response, MasterInfoBean.class);
+
+                Log.i(TAG, "onResponse: " + masterInfoBean.toString());
+
+                // TODO: 2016/11/29  这是测试的数据源。
+
+
+            }
+        });
+
+
+
+
+
+
 
         mPresenter.start();
     }
