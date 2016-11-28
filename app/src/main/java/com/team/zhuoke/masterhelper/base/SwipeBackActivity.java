@@ -15,7 +15,6 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
 public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppCompatActivity implements BaseView<T> {
@@ -25,7 +24,6 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
 
     //    定义Presenter
     protected  T mPresenter;
-    protected Unbinder unbinder;
 
     //    获取布局资源文件
     protected  abstract  int getLayoutId();
@@ -55,7 +53,7 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
 //            设置布局资源文件
             setContentView(getLayoutId());
 //            注解绑定
-            unbinder=  ButterKnife.bind(this);
+            ButterKnife.inject(this);
             bindPresenter();
             onInitView(savedInstanceState);
             onEvent();
@@ -91,9 +89,7 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
+      ButterKnife.reset(this);
         if(mPresenter!=null)
         {
             ContractProxy.getInstance().unbind(getContractClazz(),this);

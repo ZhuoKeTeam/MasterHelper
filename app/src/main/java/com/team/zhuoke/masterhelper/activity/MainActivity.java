@@ -16,16 +16,16 @@ import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 import com.team.zhuoke.masterhelper.fragment.main.MainFragment;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BaseMainFragment.OnDrawerController {
     private static final String FRAGMENT_KEY = "_KEY";
-    @BindView(R.id.main_fl_container)
+    @InjectView(R.id.main_fl_container)
     FrameLayout mFragment;
-    @BindView(R.id.main_nv_menu)
+    @InjectView(R.id.main_nv_menu)
     NavigationView mNavigationView;
-    @BindView(R.id.main_dl_container)
+    @InjectView(R.id.main_dl_container)
     DrawerLayout mDrawerLayout;
     private FragmentManager mFragmentManager;
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        ButterKnife.inject(this);
         mFragmentManager = getSupportFragmentManager();
         initView();
         bindFragment(savedInstanceState);

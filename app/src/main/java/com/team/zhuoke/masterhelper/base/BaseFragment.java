@@ -11,7 +11,6 @@ import com.team.zhuoke.masterhelper.model.ContractProxy;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  *  作者：gaoyin
@@ -23,7 +22,7 @@ import butterknife.Unbinder;
  *  修改时间：2016/11/14 上午11:28
  **/
 public abstract class BaseFragment<T extends BasePresenter> extends RxFragment implements BaseView<T> {
-    protected Unbinder unbinder;
+
     protected View rootView;
     protected Context mContext = null;//context
 
@@ -52,7 +51,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends RxFragment i
         } else {
             rootView = super.onCreateView(inflater, container, savedInstanceState);
         }
-        unbinder= ButterKnife.bind(this, rootView);
+        ButterKnife.inject(this, rootView);
         bindPresenter();
         onInitView(savedInstanceState);
         onEvent();
@@ -93,9 +92,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends RxFragment i
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
+         ButterKnife.reset(this);
         if (mPresenter != null)
         {
             ContractProxy.getInstance().unbind(getContractClazz(),this);
