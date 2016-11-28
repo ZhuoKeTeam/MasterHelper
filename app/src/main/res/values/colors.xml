@@ -6,4 +6,5 @@
     <color name="text_color">#222222</color>
     <color name="text_white_color">#ffffff</color>
     <color name="bg_gray_color">#5999</color>
+    <color name="btn_ok_pressed">#ff4248</color>
 </resources>

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
+                android:background="@android:color/black"
     >
 
     <com.team.zhuoke.masterhelper.widget.PathView
@@ -11,20 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:pathColor="@android:color/white"
-        app:pathWidth="5"
-        app:svg="@raw/monitor"/>
+        app:svg="@raw/monitor"
+        app:pathWidth="5"/>
 
-    <TextView
-        android:id="@+id/tv_countDown"
-        android:layout_width="@dimen/dimen_30dp"
-        android:layout_height="@dimen/dimen_30dp"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/dimen_30dp"
-        android:background="@drawable/countdown_50dp"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/text_white_color"
-        >
-    </TextView>
 </RelativeLayout>
