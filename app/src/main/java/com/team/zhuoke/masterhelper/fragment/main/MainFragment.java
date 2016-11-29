@@ -39,9 +39,15 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
     RecyclerView mVerticalRecycleView;
 
     private MainFragmentContract.IMainFragmentPresenter mPresenter;
+    private static MainFragment mainFragment;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static MainFragment getInstance() {
+        /**原为newInstance
+         * */
+        if (mainFragment == null) {
+            mainFragment = new MainFragment();
+        }
+        return mainFragment;
     }
 
     @Override
@@ -59,7 +65,6 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         mToolBar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
         mToolBar.setNavigationOnClickListener(menu -> openDrawer());
         setHasOptionsMenu(true);
-
 
         mPresenter.start();
     }

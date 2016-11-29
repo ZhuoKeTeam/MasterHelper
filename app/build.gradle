@@ -25,12 +25,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
 
 def SUPPORT_VERSION = "25.0.0"
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
 
     // 必备库
     compile "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
@@ -51,6 +54,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-
+    compile project(':library')
 
 }
