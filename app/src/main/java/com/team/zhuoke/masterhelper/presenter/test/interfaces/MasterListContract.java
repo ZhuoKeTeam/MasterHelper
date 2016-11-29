@@ -1,6 +1,5 @@
 package com.team.zhuoke.masterhelper.presenter.test.interfaces;
 
-
 import com.team.zhuoke.masterhelper.base.CommonPresenter;
 import com.team.zhuoke.masterhelper.base.CommonView;
 import com.team.zhuoke.masterhelper.model.annotation.Implement;
