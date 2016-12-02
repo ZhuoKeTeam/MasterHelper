@@ -40,7 +40,6 @@ public class ContractProxy {
             }
         }
     }
-
     // 初始化presenter add map
     public <T> T bind(Class clzz, BaseView var1) {
         if (!m_objects.containsKey(clzz)) {
