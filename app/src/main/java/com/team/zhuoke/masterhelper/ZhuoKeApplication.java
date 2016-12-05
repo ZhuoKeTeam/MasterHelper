@@ -3,6 +3,9 @@ package com.team.zhuoke.masterhelper;
 import android.app.Application;
 import android.content.Context;
 
+import com.team.zhuoke.masterhelper.api.NetWorkApi;
+import com.team.zhuoke.masterhelper.net.config.NetWorkConfiguration;
+import com.team.zhuoke.masterhelper.net.http.HttpUtils;
 import com.team.zhuoke.masterhelper.utils.L;
 import com.tencent.smtt.sdk.QbSdk;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -58,6 +61,17 @@ public class ZhuoKeApplication extends Application {
                 //其他配置
                 .build();
         OkHttpUtils.initClient(okHttpClient);
+        /**
+         *  网络配置
+         */
+        NetWorkConfiguration configuration=new NetWorkConfiguration(this)
+                                                            .baseUrl(NetWorkApi.baseUrl)
+                                                            .isCache(true)
+                                                            .isDiskCache(true)
+                                                            .isMemoryCache(false);
+        HttpUtils.setConFiguration(configuration);
+
+
     }
 
 
