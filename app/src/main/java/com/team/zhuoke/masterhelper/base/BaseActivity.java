@@ -7,6 +7,8 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 
+import static android.os.Build.VERSION_CODES.M;
+
 
 /**
  *  作者：gaoyin
@@ -22,10 +24,10 @@ import butterknife.ButterKnife;
  *  备注消息：
  *  修改时间：2016/11/8 下午3:46
  **/
-public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatActivity implements BaseView<T> {
+public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatActivity implements  BaseView<P> {
 
 //    定义Presenter
-    protected  T mPresenter;
+    protected  P mPresenter;
 
 //    获取布局资源文件
     protected  abstract  int getLayoutId();
@@ -38,9 +40,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
 
     protected  abstract  void onEvent();
 
-//    获得抽取接口Class对象
-    protected  abstract Class getContractClazz();
-
+//    获得抽取接口Presenter对象
+    protected  abstract Class getPresenterClazz();
+    //    获得抽取接口Model对象
+    protected  abstract Class getModelClazz();
 
 
     @Override
@@ -51,25 +54,38 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
 //            设置布局资源文件
              setContentView(getLayoutId());
 //            注解绑定
-         ButterKnife.inject(this);
+            ButterKnife.inject(this);
             bindPresenter();
+            bindModel();
             onInitView(savedInstanceState);
             onEvent();
         }
     }
+    private  void bindModel()
+    {
+        if(getModelClazz()!=null&&mPresenter!=null)
+        {
+              getModelImpl();
+        }
 
+    }
+    private <T> T getModelImpl()
+    {
+
+        return ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
+    }
     private  void bindPresenter()
     {
-          if(getContractClazz()!=null)
+          if(getPresenterClazz()!=null)
           {
                mPresenter=getPresenterImpl();
+              mPresenter.mContext=this;
           }
     }
 
     private <T> T getPresenterImpl()
     {
-
-        return ContractProxy.getInstance().bind(getContractClazz(),this);
+        return ContractProxy.getInstance().bindPresenter(getPresenterClazz(),this);
     }
 
     @Override
@@ -77,7 +93,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
 
         if(mPresenter!=null&&!mPresenter.isViewBind())
         {
-            ContractProxy.getInstance().bind(getContractClazz(),this);
+            ContractProxy.getInstance().bindPresenter(getPresenterClazz(),this);
+            ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
+            mPresenter.mContext=this;
         }
         super.onStart();
     }
@@ -91,7 +109,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
        ButterKnife.reset(this);
         if(mPresenter!=null)
         {
-            ContractProxy.getInstance().unbind(getContractClazz(),this);
+            ContractProxy.getInstance().unbindPresenter(getPresenterClazz(),this);
+            ContractProxy.getInstance().unbindModel(getModelClazz(),mPresenter);
             mPresenter.detachView();
         }
     }
