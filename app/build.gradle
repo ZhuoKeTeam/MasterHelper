@@ -25,11 +25,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-repositories {
-    maven {
-        url "https://jitpack.io"
-    }
-}
 
 def SUPPORT_VERSION = "25.0.0"
 dependencies {

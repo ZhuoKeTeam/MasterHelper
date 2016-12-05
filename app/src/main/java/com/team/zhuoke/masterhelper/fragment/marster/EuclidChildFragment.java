@@ -1,4 +1,4 @@
-package com.team.zhuoke.masterhelper.fragment.main;
+package com.team.zhuoke.masterhelper.fragment.marster;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,11 +20,11 @@ import java.util.Map;
 /**
  * Created by Doraemon on 2016/11/29.
  * 继承EuclidFragment 实现效果
- *还未修改成MVP模式
+ * 还未修改成MVP模式
  */
 
 public class EuclidChildFragment extends EuclidFragment {
-    private ToolBarbackClickLister toolBarbackClickLister;
+    private ToolBarBackClickLister toolBarBackClickLister;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,18 +34,11 @@ public class EuclidChildFragment extends EuclidFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mButtonProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Oh hi!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mToolbarBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (toolBarbackClickLister != null) {
-                    toolBarbackClickLister.onBackClick();
-                }
+        mButtonProfile.setOnClickListener(v -> Toast.makeText(getActivity(), "Oh hi!", Toast.LENGTH_SHORT).show());
+        mToolbarBack.setImageResource(R.drawable.ic_menu_white_24dp);
+        mToolbarBack.setOnClickListener(view1 -> {
+            if (toolBarBackClickLister != null) {
+                toolBarBackClickLister.onBackClick();
             }
         });
     }
@@ -80,14 +73,14 @@ public class EuclidChildFragment extends EuclidFragment {
         return new EuclidListAdapter(getActivity(), R.layout.list_item, profilesList);
     }
 
+    public void setToolBarBackClickLister(ToolBarBackClickLister toolBarBackClickLister) {
+        this.toolBarBackClickLister = toolBarBackClickLister;
+    }
+
     /**
      * 返回键监听
      */
-    interface ToolBarbackClickLister {
+    interface ToolBarBackClickLister {
         void onBackClick();
-    }
-
-    public void setToolBarbackClickLister(ToolBarbackClickLister toolBarbackClickLister) {
-        this.toolBarbackClickLister = toolBarbackClickLister;
     }
 }

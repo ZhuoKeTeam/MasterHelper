@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 import com.team.zhuoke.masterhelper.fragment.main.MainFragment;
-import com.team.zhuoke.masterhelper.fragment.main.ProfileFragment;
+import com.team.zhuoke.masterhelper.fragment.marster.ProfileFragment;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mFragmentManager.beginTransaction().show(MainFragment.getInstance()).hide(profileFragment).commit();
                 }
                 break;
-            case R.id.nav_share:
+            case R.id.nav_master:
                 if (profileFragment == null) {
                     profileFragment = new ProfileFragment();
                 }

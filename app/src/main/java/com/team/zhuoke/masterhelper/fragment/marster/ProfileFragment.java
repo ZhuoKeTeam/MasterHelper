@@ -1,4 +1,4 @@
-package com.team.zhuoke.masterhelper.fragment.main;
+package com.team.zhuoke.masterhelper.fragment.marster;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,14 +38,9 @@ public class ProfileFragment extends BaseMainFragment {
     }
 
     private void initFragment() {
-        fm=getChildFragmentManager();
-        euclidChildFragment=new EuclidChildFragment();
-        euclidChildFragment.setToolBarbackClickLister(new EuclidChildFragment.ToolBarbackClickLister() {
-            @Override
-            public void onBackClick() {
-                openDrawer();
-            }
-        });
-        fm.beginTransaction().add(R.id.fram_container,euclidChildFragment).show(euclidChildFragment).commit();
+        fm = getChildFragmentManager();
+        euclidChildFragment = new EuclidChildFragment();
+        euclidChildFragment.setToolBarBackClickLister(() -> openDrawer());
+        fm.beginTransaction().add(R.id.fram_container, euclidChildFragment).show(euclidChildFragment).commit();
     }
 }
