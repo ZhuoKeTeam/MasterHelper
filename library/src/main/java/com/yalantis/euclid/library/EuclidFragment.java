@@ -3,14 +3,12 @@ package com.yalantis.euclid.library;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +58,7 @@ public abstract class EuclidFragment extends Fragment {
     protected TextView mTextViewProfileDescription;
     protected View mButtonProfile;
     protected ImageView mToolbarBack;
+    private TextView mTitle;
 
     public static ShapeDrawable sOverlayShape;
     static int sScreenWidth;
@@ -89,6 +88,7 @@ public abstract class EuclidFragment extends Fragment {
         mTextViewProfileDescription = (TextView) view.findViewById(R.id.text_view_profile_description);
         mButtonProfile = view.findViewById(R.id.button_profile);
         mToolbarBack=(ImageView)view.findViewById(R.id.toolbar_list_back);
+        mTitle = (TextView) view.findViewById(R.id.fragment_title);
         view.findViewById(R.id.toolbar_profile_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +97,10 @@ public abstract class EuclidFragment extends Fragment {
         });
         init();
         return view;
+    }
+
+    protected void setTitle(CharSequence title) {
+        mTitle.setText(title);
     }
 
     protected void init() {
@@ -165,7 +169,6 @@ public abstract class EuclidFragment extends Fragment {
         }
 
         mOverlayListItemView.findViewById(R.id.view_avatar_overlay).setBackground(sOverlayShape);
-
         Picasso.with(getActivity()).load((Integer) item.get(EuclidListAdapter.KEY_AVATAR))
                 .resize(sScreenWidth, sProfileImageHeight).centerCrop()
                 .placeholder(R.color.blue)
@@ -389,7 +392,7 @@ public abstract class EuclidFragment extends Fragment {
      * This method starts set of transition animations, which hides profile toolbar, profile avatar
      * and profile details views.
      */
-    private void animateCloseProfileDetails() {
+    protected void animateCloseProfileDetails() {
         mState = EuclidState.Closing;
         getCloseProfileAnimatorSet().start();
     }

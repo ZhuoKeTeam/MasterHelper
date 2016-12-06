@@ -7,8 +7,8 @@
     <FrameLayout
         android:id="@+id/toolbar_list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_toolbar"
-        android:background="@color/light_blue">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
 
         <ImageView
             android:id="@+id/toolbar_list_back"
@@ -17,9 +17,10 @@
             android:layout_centerVertical="true"
             android:layout_gravity="left"
             android:padding="15dp"
-            android:src="@drawable/ic_arrow_left" />
+            android:scaleType="center"/>
 
         <TextView
+            android:id="@+id/fragment_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -42,7 +43,7 @@
     <RelativeLayout
         android:id="@+id/toolbar_profile"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_toolbar"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/gray"
         android:clickable="true"
         android:orientation="horizontal"
@@ -55,6 +56,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:padding="15dp"
+            android:scaleType="center"
             android:src="@drawable/ic_arrow_left" />
 
         <RelativeLayout
