@@ -6,24 +6,19 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by Doraemon on 2016/11/28.
  */
 public class ProfileFragment extends BaseMainFragment {
-    FragmentManager fm;
-    EuclidChildFragment euclidChildFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile_fram, null);
-        ButterKnife.inject(this, view);
-        return view;
+        return inflater.inflate(R.layout.fragment_profile_fram, null);
     }
 
     @Override
@@ -38,9 +33,10 @@ public class ProfileFragment extends BaseMainFragment {
     }
 
     private void initFragment() {
-        fm = getChildFragmentManager();
-        euclidChildFragment = new EuclidChildFragment();
+        FragmentManager fm = getChildFragmentManager();
+        EuclidChildFragment euclidChildFragment = new EuclidChildFragment();
         euclidChildFragment.setToolBarBackClickLister(() -> openDrawer());
         fm.beginTransaction().add(R.id.fram_container, euclidChildFragment).show(euclidChildFragment).commit();
     }
+
 }

@@ -16,6 +16,7 @@ import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 import com.team.zhuoke.masterhelper.fragment.main.MainFragment;
 import com.team.zhuoke.masterhelper.fragment.marster.ProfileFragment;
+import com.team.zhuoke.masterhelper.utils.backfragmentutils.BackFragmentHelper;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -58,6 +59,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .add(R.id.main_fl_container, MainFragment.getInstance())
                 .commit();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!onBackPressedWithResult()) {
+            super.onBackPressed();
+        }
+    }
+
+    public boolean onBackPressedWithResult() {
+        return BackFragmentHelper.fireOnBackPressedEvent(this);
     }
 
     @Override

@@ -2,15 +2,16 @@ package com.team.zhuoke.masterhelper.fragment.marster;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.team.zhuoke.masterhelper.R;
+import com.team.zhuoke.masterhelper.utils.backfragmentutils.BackFragment;
 import com.yalantis.euclid.library.EuclidFragment;
 import com.yalantis.euclid.library.EuclidListAdapter;
+import com.yalantis.euclid.library.EuclidState;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,24 +24,21 @@ import java.util.Map;
  * 还未修改成MVP模式
  */
 
-public class EuclidChildFragment extends EuclidFragment {
+public class EuclidChildFragment extends EuclidFragment implements BackFragment {
     private ToolBarBackClickLister toolBarBackClickLister;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mButtonProfile.setOnClickListener(v -> Toast.makeText(getActivity(), "Oh hi!", Toast.LENGTH_SHORT).show());
         mToolbarBack.setImageResource(R.drawable.ic_menu_white_24dp);
+        mToolbarBack.setScaleType(ImageView.ScaleType.CENTER);
         mToolbarBack.setOnClickListener(view1 -> {
             if (toolBarBackClickLister != null) {
                 toolBarBackClickLister.onBackClick();
             }
         });
+        setTitle("大神");
     }
 
     @Override
@@ -75,6 +73,20 @@ public class EuclidChildFragment extends EuclidFragment {
 
     public void setToolBarBackClickLister(ToolBarBackClickLister toolBarBackClickLister) {
         this.toolBarBackClickLister = toolBarBackClickLister;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (getState() != EuclidState.Closed) {
+            animateCloseProfileDetails();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int getBackPriority() {
+        return 0;
     }
 
     /**
