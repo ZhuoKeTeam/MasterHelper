@@ -26,11 +26,9 @@ android {
     }
 }
 
-
 def SUPPORT_VERSION = "25.0.0"
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
 
     // 必备库
     compile "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
@@ -66,6 +64,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    compile project(':library')
 
-
+    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }

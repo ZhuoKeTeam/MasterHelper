@@ -36,8 +36,10 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
 
     protected  abstract  void onEvent();
 
-    //    获得抽取接口Class对象
-    protected  abstract Class getContractClazz();
+    //    获得抽取接口Presenter对象
+    protected  abstract Class getPresenterClazz();
+    //    获得抽取接口Model对象
+    protected  abstract Class getModelClazz();
 
 
     @Override
@@ -55,30 +57,47 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
 //            注解绑定
             ButterKnife.inject(this);
             bindPresenter();
+            bindModel();
             onInitView(savedInstanceState);
             onEvent();
         }
     }
+    private  void bindModel()
+    {
+        if(getModelClazz()!=null&&mPresenter!=null)
+        {
+            getModelImpl();
+        }
+
+    }
+    private <T> T getModelImpl()
+    {
+
+        return ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
+    }
     private  void bindPresenter()
     {
-        if(getContractClazz()!=null)
+        if(getPresenterClazz()!=null)
         {
             mPresenter=getPresenterImpl();
+            mPresenter.mContext=this;
         }
     }
 
     private <T> T getPresenterImpl()
     {
-
-        return ContractProxy.getInstance().bind(getContractClazz(),this);
+        return ContractProxy.getInstance().bindPresenter(getPresenterClazz(),this);
     }
 
     @Override
     protected void onStart() {
 
+
         if(mPresenter!=null&&!mPresenter.isViewBind())
         {
-            ContractProxy.getInstance().bind(getContractClazz(),this);
+            ContractProxy.getInstance().bindPresenter(getPresenterClazz(),this);
+            ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
+            mPresenter.mContext=this;
         }
         super.onStart();
     }
@@ -92,7 +111,8 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
       ButterKnife.reset(this);
         if(mPresenter!=null)
         {
-            ContractProxy.getInstance().unbind(getContractClazz(),this);
+            ContractProxy.getInstance().unbindPresenter(getPresenterClazz(),this);
+            ContractProxy.getInstance().unbindModel(getModelClazz(),mPresenter);
             mPresenter.detachView();
         }
     }

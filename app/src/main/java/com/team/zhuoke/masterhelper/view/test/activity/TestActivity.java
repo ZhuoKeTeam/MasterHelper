@@ -2,6 +2,7 @@ package com.team.zhuoke.masterhelper.view.test.activity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.team.zhuoke.masterhelper.R;
@@ -28,6 +29,8 @@ import butterknife.OnClick;
 public class TestActivity extends BaseActivity<MasterListPresenterImp> implements MasterListContract.View {
     @InjectView(R.id.btn_home)
     Button btnHome;
+    @InjectView(R.id.ed_data)
+    EditText edData;
 
     @Override
     protected int getLayoutId() {
@@ -39,9 +42,9 @@ public class TestActivity extends BaseActivity<MasterListPresenterImp> implement
 
 
     }
+
     @OnClick(R.id.btn_home)
-    public void home()
-    {
+    public void home() {
         mPresenter.getMasterList();
     }
 
@@ -51,8 +54,13 @@ public class TestActivity extends BaseActivity<MasterListPresenterImp> implement
     }
 
     @Override
-    protected Class getContractClazz() {
-        return MasterListContract.class;
+    protected Class getPresenterClazz() {
+        return MasterListContract.Presenter.class;
+    }
+
+    @Override
+    protected Class getModelClazz() {
+        return MasterListContract.Model.class;
     }
 
     @Override
@@ -69,8 +77,9 @@ public class TestActivity extends BaseActivity<MasterListPresenterImp> implement
 
     @Override
     public void showErrorWithStatus(String msg) {
-        Toast.makeText(getApplicationContext(),msg.toString(),Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), msg.toString(), Toast.LENGTH_LONG).show();
     }
+
     @Override
     public void showsInfoWithStatus(String msg) {
 
@@ -88,6 +97,6 @@ public class TestActivity extends BaseActivity<MasterListPresenterImp> implement
 
     @Override
     public void MasterList(List<MasterList> masterLists) {
-        Toast.makeText(getApplicationContext(),masterLists.toString(),Toast.LENGTH_LONG).show();
+        edData.setText(masterLists.toString());
     }
 }

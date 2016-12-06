@@ -65,7 +65,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
 
     private MainFragmentContract.IMainFragmentPresenter mPresenter;
 
-    public static MainFragment newInstance() {
+    public static MainFragment getInstance() {
         return new MainFragment();
     }
 
@@ -266,6 +266,20 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         mVerticalRecycleView.setAdapter(adapter);
     }
 
+    @Override
+    public void onMenuItemClick(View clickedView, int position) {
+
+        // TODO: 2016/11/28  这里只是一个示范，可以优化
+        switch (position) {
+            case 5:
+                //启动到关于我们的界面
+                startActivity(new Intent(getContext(), AboutUsActivity.class));
+                break;
+        }
+
+
+        Toast.makeText(mActivity, "酷 -> " + position, Toast.LENGTH_SHORT).show();
+    }
 
     public static class VHolder extends RecyclerView.ViewHolder {
         private ImageView innerImage;
@@ -299,21 +313,6 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
             innerContainer.setOnClickListener(view ->
                     Toast.makeText(view.getContext(), "横向Item被点", Toast.LENGTH_SHORT).show());
         }
-    }
-
-    @Override
-    public void onMenuItemClick(View clickedView, int position) {
-
-        // TODO: 2016/11/28  这里只是一个示范，可以优化
-        switch (position) {
-            case 5:
-                //启动到关于我们的界面
-                startActivity(new Intent(getContext(), AboutUsActivity.class));
-                break;
-        }
-
-
-        Toast.makeText(mActivity, "酷 -> " + position, Toast.LENGTH_SHORT).show();
     }
 
 }
