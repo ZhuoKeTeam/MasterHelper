@@ -21,7 +21,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +29,8 @@ import com.team.zhuoke.masterhelper.AboutUsActivity;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.bean.MasterInfoBean;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
+import com.team.zhuoke.masterhelper.utils.adapter.BaseAdapter;
+import com.team.zhuoke.masterhelper.utils.adapter.CommonAdapter;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
@@ -55,10 +56,11 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
     CollapsingToolbarLayout mCollapsingToolbarLayout;
     @InjectView(R.id.main_fragment_tb_bar_header_layout)
     AppBarLayout mAppBarLayout;
-    @InjectView(R.id.main_fragment_rv_horizontal)
-    RecyclerView mHorizontalRecycleView;
     @InjectView(R.id.main_fragment_rv_vertical)
     RecyclerView mVerticalRecycleView;
+    @InjectView(R.id.text_view_toolbar_title)
+    TextView mToolBarTextView;
+
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
@@ -84,7 +86,6 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         initActionBar();
         initMenuFragment();
         setHasOptionsMenu(true);
-        initTitle(view);
 
         String url = "https://zkteam.wilddogio.com/master_list.json";
         RequestCall requestCall = OkHttpUtils.get().url(url).build();
@@ -108,13 +109,6 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
 
             }
         });
-
-
-
-
-
-
-
         mPresenter.start();
     }
 
@@ -142,21 +136,6 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
     }
 
     private List<MenuObject> getMenuObjects() {
-        // You can use any [resource, bitmap, drawable, color] as image:
-        // item.setResource(...)
-        // item.setBitmap(...)
-        // item.setDrawable(...)
-        // item.setColor(...)
-        // You can set image ScaleType:
-        // item.setScaleType(ScaleType.FIT_XY)
-        // You can use any [resource, drawable, color] as background:
-        // item.setBgResource(...)
-        // item.setBgDrawable(...)
-        // item.setBgColor(...)
-        // You can use any [color] as text color:
-        // item.setTextColor(...)
-        // You can set any [color] as divider color:
-        // item.setDividerColor(...)
 
         List<MenuObject> menuObjects = new ArrayList<>();
 
@@ -197,10 +176,6 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         return menuObjects;
     }
 
-    private void initTitle(View view) {
-        TextView mToolBarTextView = (TextView) view.findViewById(R.id.text_view_toolbar_title);
-        mToolBarTextView.setText("主页");
-    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -226,8 +201,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
 
     @Override
     public void setTitle(String title) {
-        mActivity.getSupportActionBar()
-                .setTitle(title);
+        mToolBarTextView.setText(title);
     }
 
     @Override
@@ -236,28 +210,19 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
     }
 
     @Override
-    public View getVItem() {
-        return mActivity.getLayoutInflater().inflate(R.layout.fragment_v_recycle_item, mVerticalRecycleView, false);
+    public BaseAdapter.BaseHolder getVItem() {
+        View view = mActivity.getLayoutInflater().inflate(R.layout.fragment_v_recycle_item, mVerticalRecycleView, false);
+        return new VHolder(view);
     }
 
     @Override
-    public View getHItem() {
-        return mActivity.getLayoutInflater().inflate(R.layout.fragment_h_recycle_item, mHorizontalRecycleView, false);
+    public BaseAdapter.BaseHolder getHeaderItem() {
+        View view = mActivity.getLayoutInflater().inflate(R.layout.fragment_h_recycle_item, mVerticalRecycleView, false);
+        return new HHolder(view);
     }
 
     @Override
-    public void setHAdapter(RecyclerView.Adapter<HHolder> adapter) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mHorizontalRecycleView.setLayoutManager(linearLayoutManager);
-        DividerItemDecoration decoration = new DividerItemDecoration(getContext(),
-                DividerItemDecoration.HORIZONTAL);
-        mHorizontalRecycleView.addItemDecoration(decoration);
-        mHorizontalRecycleView.setAdapter(adapter);
-    }
-
-    @Override
-    public void setVAdapter(RecyclerView.Adapter<VHolder> adapter) {
+    public void setAdapter(RecyclerView.Adapter adapter) {
         mVerticalRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration decoration = new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL);
@@ -281,38 +246,67 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         Toast.makeText(mActivity, "酷 -> " + position, Toast.LENGTH_SHORT).show();
     }
 
-    public static class VHolder extends RecyclerView.ViewHolder {
-        private ImageView innerImage;
-        private View innerContainer;
+    public class VHolder extends BaseAdapter.BaseHolder<MainFragmentPresenter.VData> {
 
-        VHolder(View itemView) {
+        public VHolder(View itemView) {
             super(itemView);
-            this.innerContainer = itemView;
-            innerImage = (ImageView) itemView.findViewById(R.id.main_fragment_v_recycle_item_img);
         }
 
-        void bindData(MainFragmentPresenter.VData data) {
-            innerImage.setImageResource(data.resImg);
-            innerContainer.setOnClickListener(view ->
-                    Toast.makeText(view.getContext(), "竖向Item被点", Toast.LENGTH_SHORT).show());
+        @Override
+        protected void onCover(View view, MainFragmentPresenter.VData data) {
+            container.setOnClickListener(view1 -> Toast.makeText(view1.getContext(), "竖直方向", Toast.LENGTH_SHORT).show());
         }
     }
 
-    public static class HHolder extends RecyclerView.ViewHolder {
-        private ImageView innerImage;
-        private View innerContainer;
+    public class HHolder extends BaseAdapter.BaseHolder<List<MainFragmentPresenter.HData>> {
+        private RecyclerView headerRecycle;
 
-        HHolder(View itemView) {
+        public HHolder(View itemView) {
             super(itemView);
-            this.innerContainer = itemView;
-            innerImage = (ImageView) itemView.findViewById(R.id.main_fragment_h_recycle_item_img);
+            headerRecycle = (RecyclerView) itemView.findViewById(R.id.header_recycle);
         }
 
-        void bindData(MainFragmentPresenter.HData data) {
-            innerImage.setImageResource(data.resImg);
-            innerContainer.setOnClickListener(view ->
-                    Toast.makeText(view.getContext(), "横向Item被点", Toast.LENGTH_SHORT).show());
+        @Override
+        protected void onCover(View view, List<MainFragmentPresenter.HData> data) {
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            headerRecycle.setLayoutManager(linearLayoutManager);
+            DividerItemDecoration decoration = new DividerItemDecoration(getContext(),
+                    DividerItemDecoration.HORIZONTAL);
+            headerRecycle.addItemDecoration(decoration);
+            headerRecycle.setAdapter(new HeaderAdapter(data));
         }
     }
 
+    public class HHolderItem extends BaseAdapter.BaseHolder<MainFragmentPresenter.HData> {
+
+
+        public HHolderItem(View itemView) {
+            super(itemView);
+        }
+
+        @Override
+        protected void onCover(View view, MainFragmentPresenter.HData data) {
+            container.setOnClickListener(view1 -> Toast.makeText(view1.getContext(), "水平方向", Toast.LENGTH_SHORT).show());
+        }
+    }
+
+    public class HeaderAdapter extends CommonAdapter<MainFragmentPresenter.HData> {
+
+        public HeaderAdapter(List<MainFragmentPresenter.HData> hDatas) {
+            super(hDatas);
+        }
+
+        @Override
+        protected BaseHolder onCreateNormalVH(ViewGroup parent, int viewType) {
+            return getHeaderItemHolder();
+        }
+    }
+
+    private BaseAdapter.BaseHolder getHeaderItemHolder() {
+        View view = mActivity.getLayoutInflater().inflate(R.layout.fragment_v_recycle_item,
+                mVerticalRecycleView, false);
+        return new HHolderItem(view);
+    }
 }

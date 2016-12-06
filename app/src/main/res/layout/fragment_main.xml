@@ -51,14 +51,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <!--水平方向-->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/main_fragment_rv_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/main_fragment_rv_horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="200dp"/>-->
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp"/>
+            <!--<Space-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="10dp"/>-->
 
             <!--竖直方向-->
             <android.support.v7.widget.RecyclerView
