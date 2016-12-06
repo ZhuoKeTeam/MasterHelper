@@ -15,6 +15,8 @@ import android.widget.FrameLayout;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 import com.team.zhuoke.masterhelper.fragment.main.MainFragment;
+import com.team.zhuoke.masterhelper.fragment.marster.ProfileFragment;
+import com.team.zhuoke.masterhelper.utils.backfragmentutils.BackFragmentHelper;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @InjectView(R.id.main_dl_container)
     DrawerLayout mDrawerLayout;
     private FragmentManager mFragmentManager;
+    private ProfileFragment profileFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,9 +56,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         mFragmentManager.beginTransaction()
-                .add(R.id.main_fl_container, MainFragment.newInstance())
+                .add(R.id.main_fl_container, MainFragment.getInstance())
                 .commit();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!onBackPressedWithResult()) {
+            super.onBackPressed();
+        }
+    }
+
+    public boolean onBackPressedWithResult() {
+        return BackFragmentHelper.fireOnBackPressedEvent(this);
     }
 
     @Override
@@ -63,6 +77,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setCheckedItem(item.getItemId());
         switch (item.getItemId()) {
             // TODO: 16-11-23 侧面菜单点击
+            case R.id.nav_home:
+                if (!MainFragment.getInstance().isVisible()) {
+                    mFragmentManager.beginTransaction().show(MainFragment.getInstance()).hide(profileFragment).commit();
+                }
+                break;
+            case R.id.nav_master:
+                if (profileFragment == null) {
+                    profileFragment = new ProfileFragment();
+                }
+                if (!profileFragment.isAdded()) {
+                    mFragmentManager.beginTransaction()
+                            .add(R.id.main_fl_container, profileFragment)
+                            .commit();
+                }
+                if (!profileFragment.isVisible()) {
+                    mFragmentManager.beginTransaction().show(profileFragment).hide(MainFragment.getInstance()).commit();
+                }
+                break;
         }
         closeDrawer();
         return true;
