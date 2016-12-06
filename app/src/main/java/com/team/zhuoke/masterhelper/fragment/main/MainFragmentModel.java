@@ -8,14 +8,15 @@ import java.util.List;
  */
 
 public class MainFragmentModel implements MainFragmentContract.IMainFragmentModel {
-
     @Override
-    public void getHData(MainFragmentPresenter.CallBack<MainFragmentPresenter.HData> callBack) {
+    public void getHData(MainFragmentPresenter.CallBack<List<MainFragmentPresenter.HData>> callBack) {
+        List<List<MainFragmentPresenter.HData>> result = new ArrayList<>();
         List<MainFragmentPresenter.HData> dataList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             dataList.add(new MainFragmentPresenter.HData());
         }
-        callBack.getSuccess(dataList);
+        result.add(dataList);
+        callBack.getSuccess(result);
     }
 
     @Override

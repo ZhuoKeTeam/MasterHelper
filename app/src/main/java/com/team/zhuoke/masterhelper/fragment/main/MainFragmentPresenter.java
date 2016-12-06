@@ -1,10 +1,11 @@
 package com.team.zhuoke.masterhelper.fragment.main;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.team.zhuoke.masterhelper.R;
+import com.team.zhuoke.masterhelper.utils.adapter.CommonHeaderAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ import java.util.List;
 class MainFragmentPresenter implements MainFragmentContract.IMainFragmentPresenter {
     private MainFragmentContract.IMainFragmentView mView;
     private MainFragmentContract.IMainFragmentModel mModel;
+    private MainAdapter mAdapter;
 
     MainFragmentPresenter(MainFragmentContract.IMainFragmentView view) {
         this.mView = view;
@@ -23,21 +25,21 @@ class MainFragmentPresenter implements MainFragmentContract.IMainFragmentPresent
 
     @Override
     public void start() {
-        mModel.getHData(new CallBack<HData>() {
-            @Override
-            public void getSuccess(List<HData> dataList) {
-                mView.setHAdapter(new HAdapter(dataList));
-            }
+        mAdapter = new MainAdapter(new ArrayList<>());
+        mModel.getVData(dataList -> {
+            mAdapter.setNormal(dataList, false);
+            mAdapter.notifyDataSetChanged();
         });
 
-        mModel.getVData(new CallBack<VData>() {
+        mModel.getHData(new CallBack<List<HData>>() {
             @Override
-            public void getSuccess(List<VData> dataList) {
-                mView.setVAdapter(new VAdapter(dataList));
+            public void getSuccess(List<List<HData>> dataList) {
+                mAdapter.setHeader(dataList, false);
+                mAdapter.notifyDataSetChanged();
             }
         });
-
         mView.setTitle("主页");
+        mView.setAdapter(mAdapter);
     }
 
     public static class HData {
@@ -54,49 +56,22 @@ class MainFragmentPresenter implements MainFragmentContract.IMainFragmentPresent
         void getSuccess(List<T> dataList);
     }
 
-    private class HAdapter extends RecyclerView.Adapter<MainFragment.HHolder> {
-        private List<HData> innerDataList;
+    private class MainAdapter extends CommonHeaderAdapter<List<HData>, VData> {
 
-        HAdapter(List<HData> dataList) {
-            this.innerDataList = dataList;
+
+        public MainAdapter(List<VData> vDatas) {
+            super(vDatas);
+        }
+
+
+        @Override
+        protected BaseHolder onCreateHeaderVH(ViewGroup parent, int viewType) {
+            return mView.getHeaderItem();
         }
 
         @Override
-        public MainFragment.HHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MainFragment.HHolder(mView.getHItem());
-        }
-
-        @Override
-        public void onBindViewHolder(MainFragment.HHolder holder, int position) {
-            holder.bindData(innerDataList.get(position));
-        }
-
-        @Override
-        public int getItemCount() {
-            return innerDataList.size();
-        }
-    }
-
-    private class VAdapter extends RecyclerView.Adapter<MainFragment.VHolder> {
-        private List<VData> innerDataList;
-
-        VAdapter(List<VData> dataList) {
-            this.innerDataList = dataList;
-        }
-
-        @Override
-        public MainFragment.VHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MainFragment.VHolder(mView.getVItem());
-        }
-
-        @Override
-        public void onBindViewHolder(MainFragment.VHolder holder, int position) {
-            holder.bindData(innerDataList.get(position));
-        }
-
-        @Override
-        public int getItemCount() {
-            return innerDataList.size();
+        protected BaseHolder onCreateNormalVH(ViewGroup parent, int viewType) {
+            return mView.getVItem();
         }
     }
 

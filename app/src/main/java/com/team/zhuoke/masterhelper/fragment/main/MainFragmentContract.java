@@ -1,7 +1,10 @@
 package com.team.zhuoke.masterhelper.fragment.main;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+
+import com.team.zhuoke.masterhelper.utils.adapter.BaseAdapter;
+
+import java.util.List;
 
 /**
  * Created by kutear on 16-11-23.
@@ -13,17 +16,15 @@ interface MainFragmentContract {
 
         void setPresenter(IMainFragmentPresenter presenter);
 
-        View getVItem();
+        BaseAdapter.BaseHolder getVItem();
 
-        View getHItem();
+        BaseAdapter.BaseHolder getHeaderItem();
 
-        void setHAdapter(RecyclerView.Adapter<MainFragment.HHolder> adapter);
-
-        void setVAdapter(RecyclerView.Adapter<MainFragment.VHolder> adapter);
+        void setAdapter(RecyclerView.Adapter adapter);
     }
 
     interface IMainFragmentModel {
-        void getHData(MainFragmentPresenter.CallBack<MainFragmentPresenter.HData> callBack);
+        void getHData(MainFragmentPresenter.CallBack<List<MainFragmentPresenter.HData>> callBack);
 
         void getVData(MainFragmentPresenter.CallBack<MainFragmentPresenter.VData> callBack);
     }

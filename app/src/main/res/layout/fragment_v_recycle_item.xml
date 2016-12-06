@@ -8,5 +8,6 @@
         android:id="@+id/main_fragment_v_recycle_item_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:src="@drawable/photo"
         android:scaleType="fitXY" />
 </LinearLayout>
