@@ -2,9 +2,11 @@ package com.team.zhuoke.masterhelper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.TextView;
 
 import com.team.zhuoke.masterhelper.activity.MainActivity;
 import com.team.zhuoke.masterhelper.utils.SharedPreferenceCommen;
@@ -16,16 +18,31 @@ import com.team.zhuoke.masterhelper.widget.PathView;
 
 public class SplashActivity extends AppCompatActivity {
     PathView mPathView;
+    private static final int COUNTDOWN = 3000;
+    private CountDownTimer mTimer;
+    private TextView mCountDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        mPathView=(PathView)findViewById(R.id.pathView);
+        mPathView = (PathView) findViewById(R.id.pathView);
+        mCountDown=(TextView) findViewById(R.id.tv_countDown);
         initView();
     }
 
     private void initView() {
+        mTimer=new CountDownTimer(COUNTDOWN,1000) {
+            @Override
+            public void onTick(long l) {
+                mCountDown.setText(""+l/1000);
+            }
+
+            @Override
+            public void onFinish() {
+                mCountDown.setText("0");
+            }
+        };
         boolean firstblood = SharedPreferenceCommen.getFristBliid(SharedPreferenceCommen.FIRSTBLOOD);
         if (firstblood) {
             // TODO: 2016/11/22 引导页
@@ -41,15 +58,15 @@ public class SplashActivity extends AppCompatActivity {
     private void normal() {
         mPathView.getPathAnimator().
                 delay(100).
-                duration(1400).
+                duration(2000).
                 interpolator(new AccelerateDecelerateInterpolator()).
                 start();
-        // TODO: 2016/11/26  这个时间太短了，请修改为 3秒钟吧，最好给界面上弄个 倒计时的东西，这里容易出现内存泄漏，一定要注意避免。
-        new Handler().postDelayed(() -> next(), 1800);
+        mTimer.start();
+        new Handler().postDelayed(() -> next(), COUNTDOWN);
     }
 
     private void next() {
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
