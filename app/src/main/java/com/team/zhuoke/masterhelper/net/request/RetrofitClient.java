@@ -59,10 +59,10 @@ public class RetrofitClient {
             throw new RuntimeException("api Service is null!");
         }
         retrofit=new Retrofit.Builder()
-                .client(mOkHttpClient)
-                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .client(mOkHttpClient)
+                .baseUrl(baseUrl)
                 .build();
         return retrofit.create(service);
     }

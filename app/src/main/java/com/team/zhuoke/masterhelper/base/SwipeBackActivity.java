@@ -17,13 +17,13 @@ import java.util.List;
 import butterknife.ButterKnife;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
-public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppCompatActivity implements BaseView {
+public abstract class SwipeBackActivity<M extends  BaseModel , P extends BasePresenter> extends RxAppCompatActivity  {
 
 
     public SwipeBackLayout mSwipeBackLayout;
 
     //    定义Presenter
-    protected  T mPresenter;
+    protected  P mPresenter;
 
     //    获取布局资源文件
     protected  abstract  int getLayoutId();
@@ -36,13 +36,17 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
 
     protected  abstract  void onEvent();
 
-    //    获得抽取接口Presenter对象
-    protected  abstract Class getPresenterClazz();
+
+    //   获取抽取View对象
+    protected   abstract BaseView getView();
     //    获得抽取接口Model对象
-    protected  abstract Class getModelClazz();
-
-
-    @Override
+    protected   Class getModelClazz()  {
+        return (Class<M>)ContractProxy.getModelClazz(getClass(), 0);
+    }
+    //    获得抽取接口Presenter对象
+    protected    Class getPresenterClazz()  {
+        return (Class<P>)ContractProxy.getPresnterClazz(getClass(), 1);
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -56,52 +60,44 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
             setContentView(getLayoutId());
 //            注解绑定
             ButterKnife.inject(this);
-            bindPresenter();
-            bindModel();
+            bindMVP();
             onInitView(savedInstanceState);
             onEvent();
         }
     }
-    private  void bindModel()
-    {
-        if(getModelClazz()!=null&&mPresenter!=null)
-        {
-            getModelImpl();
-        }
-
-    }
-    private <T> T getModelImpl()
-    {
-
-        return ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
-    }
-    private  void bindPresenter()
+    /**
+     *  获取presenter 实例
+     */
+    private  void bindMVP()
     {
         if(getPresenterClazz()!=null)
         {
             mPresenter=getPresenterImpl();
             mPresenter.mContext=this;
+            bindVM();
         }
     }
-
     private <T> T getPresenterImpl()
     {
-        return ContractProxy.getInstance().bindPresenter(getPresenterClazz(),this);
+        return ContractProxy.getInstance().presenter(getPresenterClazz());
     }
-
     @Override
     protected void onStart() {
-
-
-        if(mPresenter!=null&&!mPresenter.isViewBind())
+        if(mPresenter==null)
         {
-            ContractProxy.getInstance().bindPresenter(getPresenterClazz(),this);
-            ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
-            mPresenter.mContext=this;
+            bindMVP();
         }
         super.onStart();
     }
-
+    private  void bindVM()
+    {
+        if(mPresenter!=null&&!mPresenter.isViewBind()&&getModelClazz()!=null&&getView()!=null)
+        {
+            ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
+            ContractProxy.getInstance().bindView(getView(),mPresenter);
+            mPresenter.mContext=this;
+        }
+    }
     /**
      *  activity摧毁
      */
@@ -111,9 +107,8 @@ public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppC
       ButterKnife.reset(this);
         if(mPresenter!=null)
         {
-            ContractProxy.getInstance().unbindPresenter(getPresenterClazz(),this);
+            ContractProxy.getInstance().unbindView(getView(),mPresenter);
             ContractProxy.getInstance().unbindModel(getModelClazz(),mPresenter);
-            mPresenter.detachView();
         }
     }
 

@@ -12,6 +12,7 @@ import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 
+
 /**
  *  作者：gaoyin
  *  电话：18810474975
@@ -21,13 +22,13 @@ import butterknife.ButterKnife;
  *  备注消息：
  *  修改时间：2016/11/14 上午11:28
  **/
-public abstract class BaseFragment<T extends BasePresenter> extends RxFragment implements BaseView {
+public abstract class BaseFragment<M extends  BaseModel,P extends BasePresenter> extends RxFragment  {
 
     protected View rootView;
     protected Context mContext = null;//context
 
     //    定义Presenter
-    protected  T mPresenter;
+    protected  P mPresenter;
 
     //    获取布局资源文件
     protected  abstract  int getLayoutId();
@@ -40,11 +41,16 @@ public abstract class BaseFragment<T extends BasePresenter> extends RxFragment i
 
     protected  abstract  void onEvent();
 
-    //    获得抽取接口Presenter对象
-    protected  abstract Class getPresenterClazz();
+    //   获取抽取View对象
+    protected   abstract BaseView getViewImp();
     //    获得抽取接口Model对象
-    protected  abstract Class getModelClazz();
-
+    protected   Class getModelClazz()  {
+        return (Class<M>)ContractProxy.getModelClazz(getClass(), 0);
+    }
+    //    获得抽取接口Presenter对象
+    protected    Class getPresenterClazz()  {
+        return (Class<P>)ContractProxy.getPresnterClazz(getClass(), 1);
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,38 +60,43 @@ public abstract class BaseFragment<T extends BasePresenter> extends RxFragment i
             rootView = super.onCreateView(inflater, container, savedInstanceState);
         }
         ButterKnife.inject(this, rootView);
-        bindPresenter();
-        bindModel();
+        bindMVP();
         onInitView(savedInstanceState);
         onEvent();
         return rootView;
     }
-    private  void bindModel()
-    {
-        if(getModelClazz()!=null&&mPresenter!=null)
-        {
-            getModelImpl();
-        }
-
-    }
-    private <T> T getModelImpl()
-    {
-
-        return ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
-    }
-
-    private  void bindPresenter()
+    /**
+     *  获取presenter 实例
+     */
+    private  void bindMVP()
     {
         if(getPresenterClazz()!=null)
         {
             mPresenter=getPresenterImpl();
             mPresenter.mContext=getActivity();
+            bindVM();
         }
     }
-
     private <T> T getPresenterImpl()
     {
-        return ContractProxy.getInstance().bindPresenter(getPresenterClazz(),this);
+        return ContractProxy.getInstance().presenter(getPresenterClazz());
+    }
+    @Override
+    public void onStart() {
+        if(mPresenter==null)
+        {
+            bindMVP();
+        }
+        super.onStart();
+    }
+    private  void bindVM()
+    {
+        if(mPresenter!=null&&!mPresenter.isViewBind()&&getModelClazz()!=null&&getViewImp()!=null)
+        {
+            ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
+            ContractProxy.getInstance().bindView(getViewImp(),mPresenter);
+            mPresenter.mContext=getActivity();
+        }
     }
 
     @Override
@@ -95,19 +106,12 @@ public abstract class BaseFragment<T extends BasePresenter> extends RxFragment i
     }
 
     @Override
-    public void onStart() {
-        if(mPresenter!=null&&!mPresenter.isViewBind())
-        {
-            ContractProxy.getInstance().bindPresenter(getPresenterClazz(),this);
-            ContractProxy.getInstance().bindModel(getModelClazz(),mPresenter);
-            mPresenter.mContext=getActivity();
-        }
-        super.onStart();
-    }
-    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        bindPresenter();
+        if(mPresenter==null)
+        {
+            bindMVP();
+        }
     }
     @Override
     public void onDestroy() {
@@ -115,9 +119,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends RxFragment i
          ButterKnife.reset(this);
         if(mPresenter!=null)
         {
-            ContractProxy.getInstance().unbindPresenter(getPresenterClazz(),this);
+            ContractProxy.getInstance().unbindView(getViewImp(),mPresenter);
             ContractProxy.getInstance().unbindModel(getModelClazz(),mPresenter);
-            mPresenter.detachView();
         }
 
     }

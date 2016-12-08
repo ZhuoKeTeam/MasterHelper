@@ -8,8 +8,6 @@ import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.base.BaseActivity;
 import com.team.zhuoke.masterhelper.base.BaseView;
 import com.team.zhuoke.masterhelper.model.test.TestView;
-import com.team.zhuoke.masterhelper.presenter.test.imp.TestPresenter;
-import com.team.zhuoke.masterhelper.presenter.test.interfaces.TestContract;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -18,7 +16,7 @@ import butterknife.OnClick;
  * Created by WangQing on 2016/12/7.
  */
 
-public class TestActivity2 extends BaseActivity<TestPresenter> implements TestView {
+public class TestActivity2 extends BaseActivity implements TestView {
 
 
     @InjectView(R.id.edit_text)
@@ -37,14 +35,24 @@ public class TestActivity2 extends BaseActivity<TestPresenter> implements TestVi
     }
 
     @Override
-    protected BaseView getBaseView() {
-        return this;
+    protected void onEvent() {
+
     }
 
     @Override
-    protected Class getContract() {
-        return TestContract.class;
+    protected BaseView getView() {
+        return null;
     }
+
+//    @Override
+//    protected BaseView getBaseView() {
+//        return this;
+//    }
+//
+//    @Override
+//    protected Class getContract() {
+//        return TestContract.class;
+//    }
 
     @Override
     public void setData(String s) {
@@ -59,7 +67,7 @@ public class TestActivity2 extends BaseActivity<TestPresenter> implements TestVi
 
     @OnClick(R.id.btn_home)
     public void onClick() {
-        mPresenter.getTestList();
+//        mPresenter.getTestList();
     }
 
 }

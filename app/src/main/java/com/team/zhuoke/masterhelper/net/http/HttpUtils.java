@@ -179,7 +179,6 @@ public class HttpUtils {
 //                                .connectionPool(configuration.getConnectionPool())
 //                                .build();
 //        }
-        L.e("configuration:"+configuration.toString());
         return new RetrofitClient(configuration.getBaseUrl(),mOkHttpClient);
     }
 

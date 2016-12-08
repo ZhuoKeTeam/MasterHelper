@@ -41,7 +41,7 @@ public class ZhuoKeApplication extends Application {
         initOkHttpUtils();
 		
 		// 预加载X5
-        QbSdk.initX5Environment(getApplicationContext(), null);
+//        QbSdk.initX5Environment(getApplicationContext(), null);
     }
 
     /**
