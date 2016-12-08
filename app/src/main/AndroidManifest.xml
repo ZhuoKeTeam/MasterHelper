@@ -22,13 +22,20 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/TranslucentAppTheme">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".view.test.activity.TestActivity"></activity>
+        <activity android:name=".view.test.activity.TestActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.test.activity.TestActivity"></activity>
         <activity android:name=".AboutUsActivity"> </activity>
         <activity android:name=".WebViewActivity" />
     </application>

@@ -12,8 +12,6 @@ import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 
-import static android.os.Build.VERSION_CODES.M;
-
 /**
  *  作者：gaoyin
  *  电话：18810474975
@@ -23,7 +21,7 @@ import static android.os.Build.VERSION_CODES.M;
  *  备注消息：
  *  修改时间：2016/11/14 上午11:28
  **/
-public abstract class BaseFragment<T extends BasePresenter> extends RxFragment implements BaseView<T> {
+public abstract class BaseFragment<T extends BasePresenter> extends RxFragment implements BaseView {
 
     protected View rootView;
     protected Context mContext = null;//context

@@ -15,5 +15,6 @@ public class NetWorkApi {
       public static String baseUrl="https://zkteam.wilddogio.com";
 //     test
      public static final String getMasterList="/master_list.json";
+     public static final String getTestList="/master_list.json";
 
 }

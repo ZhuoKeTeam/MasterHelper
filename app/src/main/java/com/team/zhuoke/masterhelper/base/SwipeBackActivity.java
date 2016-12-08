@@ -17,7 +17,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
-public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppCompatActivity implements BaseView<T> {
+public abstract class SwipeBackActivity<T extends  BasePresenter> extends RxAppCompatActivity implements BaseView {
 
 
     public SwipeBackLayout mSwipeBackLayout;

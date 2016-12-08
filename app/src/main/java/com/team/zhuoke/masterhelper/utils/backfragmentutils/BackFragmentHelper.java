@@ -50,9 +50,11 @@ public class BackFragmentHelper {
             List<Fragment> result = new ArrayList<>(fragmentList);
 
             for (Fragment f : fragmentList) {
-                List<Fragment> nestedFragmentList = f.getChildFragmentManager().getFragments();
-                if (nestedFragmentList != null && nestedFragmentList.size() > 0) {
-                    result.addAll(nestedFragmentList);
+                if (f != null) {
+                    List<Fragment> nestedFragmentList = f.getChildFragmentManager().getFragments();
+                    if (nestedFragmentList != null && nestedFragmentList.size() > 0) {
+                        result.addAll(nestedFragmentList);
+                    }
                 }
             }
 
