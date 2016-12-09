@@ -3,6 +3,7 @@ package com.team.zhuoke.masterhelper.presenter.test.interfaces;
 import android.content.Context;
 
 import com.team.zhuoke.masterhelper.base.BaseModel;
+import com.team.zhuoke.masterhelper.base.BasePresenter;
 import com.team.zhuoke.masterhelper.base.BaseView;
 import com.team.zhuoke.masterhelper.base.CommonPresenter;
 import com.team.zhuoke.masterhelper.model.annotation.Implement;
@@ -24,20 +25,17 @@ import rx.Observable;
  */
 public interface TestContract {
 
-    @Implement(TestView.class)
     interface View extends BaseView {
         void setData(String s);
         void setErrorInfo(String message);
     }
 
-    @Implement(TestModel.class)
     interface Model extends BaseModel {
         Observable<List<TestList>> testList(Context context);
     }
 
-    @Implement(TestPresenter.class)
-    interface Presenter extends CommonPresenter {
-        void getTestList();
+     abstract class Presenter extends BasePresenter<View,Model> {
+         public  abstract   void getTestList();
     }
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
  * Created by WangQing on 2016/12/7.
  */
 
-public class TestPresenter extends BasePresenter<TestView, TestModel> implements TestContract.Presenter {
+public class TestPresenter extends TestContract.Presenter {
 
     @Override
     public void getTestList() {

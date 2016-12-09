@@ -7,7 +7,9 @@ import android.widget.EditText;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.base.BaseActivity;
 import com.team.zhuoke.masterhelper.base.BaseView;
+import com.team.zhuoke.masterhelper.model.test.TestModel;
 import com.team.zhuoke.masterhelper.model.test.TestView;
+import com.team.zhuoke.masterhelper.presenter.test.imp.TestPresenter;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -16,7 +18,7 @@ import butterknife.OnClick;
  * Created by WangQing on 2016/12/7.
  */
 
-public class TestActivity2 extends BaseActivity implements TestView {
+public class TestActivity2 extends BaseActivity<TestModel,TestPresenter> implements TestView {
 
 
     @InjectView(R.id.edit_text)
@@ -41,18 +43,9 @@ public class TestActivity2 extends BaseActivity implements TestView {
 
     @Override
     protected BaseView getView() {
-        return null;
+        return this;
     }
 
-//    @Override
-//    protected BaseView getBaseView() {
-//        return this;
-//    }
-//
-//    @Override
-//    protected Class getContract() {
-//        return TestContract.class;
-//    }
 
     @Override
     public void setData(String s) {
@@ -67,7 +60,7 @@ public class TestActivity2 extends BaseActivity implements TestView {
 
     @OnClick(R.id.btn_home)
     public void onClick() {
-//        mPresenter.getTestList();
+        mPresenter.getTestList();
     }
 
 }
