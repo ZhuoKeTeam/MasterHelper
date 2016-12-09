@@ -15,7 +15,7 @@ import butterknife.OnClick;
  * Created by WangQing on 2016/12/9.
  */
 
-public class TestActivity3 extends BaseActivity<Test3Model, Test3Presenter> implements Test3Contract.View {
+public class TestActivity3 extends BaseActivity<Test3Contract.Test3Model, Test3Contract.Test3Presenter> implements Test3Contract.View {
     @InjectView(R.id.edit_text)
     EditText editText;
     @InjectView(R.id.btn_home)
