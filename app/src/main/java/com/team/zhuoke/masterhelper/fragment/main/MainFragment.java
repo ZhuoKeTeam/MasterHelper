@@ -31,7 +31,6 @@ import com.team.zhuoke.masterhelper.bean.MasterInfoBean;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 import com.team.zhuoke.masterhelper.utils.adapter.BaseAdapter;
 import com.team.zhuoke.masterhelper.utils.adapter.CommonAdapter;
-import com.team.zhuoke.masterhelper.view.test.activity.TestActivity2;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
@@ -46,6 +45,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import okhttp3.Call;
+import wq.gdy005.mvp.TestActivity3;
 
 public class MainFragment extends BaseMainFragment implements MainFragmentContract.IMainFragmentView, OnMenuItemClickListener {
 
@@ -143,7 +143,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         MenuObject close = new MenuObject();
         close.setResource(R.drawable.icn_close);
 
-        MenuObject send = new MenuObject("测试 MVP的界面");
+        MenuObject send = new MenuObject("第三 MVP 界面");
         send.setResource(R.drawable.icn_1);
 
         MenuObject like = new MenuObject("Like profile");
@@ -243,7 +243,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
                 break;
             case 1:
                 //启动到 测试 MVP的界面
-                startActivity(new Intent(getContext(), TestActivity2.class));
+                startActivity(new Intent(getContext(), TestActivity3.class));
                 break;
         }
 
