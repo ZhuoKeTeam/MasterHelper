@@ -18,7 +18,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.Main"/>
+            android:theme="@style/AppTheme.Main" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/TranslucentAppTheme">
@@ -28,16 +28,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.test.activity.TestActivity"></activity>
+        <activity android:name=".view.test.activity.TestActivity" />
         <activity android:name=".view.test.activity.TestActivity2">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".AboutUsActivity"> </activity>
+        <activity android:name=".AboutUsActivity" />
         <activity android:name=".WebViewActivity" />
+        <activity android:name=".view.test.activity.TestFrescoActivity" />
+        <activity android:name=".view.test.activity.TestFresco2Activity"></activity>
     </application>
 
 </manifest>

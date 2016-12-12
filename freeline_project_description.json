@@ -1,0 +1,157 @@
+{
+    "project_type": "gradle",
+    "android_gradle_plugin_version": "2.2.2",
+    "freeline_gradle_plugin_version": "0.8.3",
+    "java_home": "D:\\Android Studio\\jre",
+    "freeline_cache_dir": "C:\\Users\\lanjian\\Desktop\\MasterHelper",
+    "auto_dependency": true,
+    "product_flavor": "",
+    "build_script": "gradlew.bat :app:assembleDebug",
+    "build_script_work_directory": "",
+    "root_dir": "C:\\Users\\lanjian\\Desktop\\MasterHelper",
+    "main_project_name": "app",
+    "main_project_dir": "app",
+    "build_directory": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\build",
+    "build_cache_dir": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\build\\freeline",
+    "build_tools_version": "25.0.0",
+    "sdk_directory": "D:\\AppData\\Local\\Android\\sdk",
+    "build_tools_directory": "D:\\AppData\\Local\\Android\\sdk\\build-tools\\25.0.0",
+    "compile_sdk_version": "android-25",
+    "compile_sdk_directory": "D:\\AppData\\Local\\Android\\sdk\\platforms\\android-25",
+    "package": "com.team.zhuoke.masterhelper",
+    "debug_package": "com.team.zhuoke.masterhelper",
+    "main_manifest_path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\AndroidManifest.xml",
+    "launcher": "com.team.zhuoke.masterhelper.SplashActivity",
+    "apk_path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\build\\outputs\\apk\\app-debug.apk",
+    "extra_dep_res_paths": [
+        
+    ],
+    "exclude_dep_res_paths": [
+        
+    ],
+    "main_r_path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\build\\generated\\source\\r\\debug\\R.java",
+    "use_jdk8": true,
+    "main_src_directory": [
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\java",
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\java"
+    ],
+    "main_res_directory": [
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\res",
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\res"
+    ],
+    "main_assets_directory": [
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\assets",
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\assets"
+    ],
+    "main_jni_directory": [
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\jni",
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\jni"
+    ],
+    "main_jniLibs_directory": [
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\jniLibs",
+        "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\jniLibs"
+    ],
+    "project_source_sets": {
+        "app": {
+            "main_src_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\java",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\java"
+            ],
+            "main_res_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\res",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\res"
+            ],
+            "main_assets_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\assets",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\assets"
+            ],
+            "main_jni_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\jni",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\jni"
+            ],
+            "main_jniLibs_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\debug\\jniLibs",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\jniLibs"
+            ],
+            "main_manifest_path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app\\src\\main\\AndroidManifest.xml"
+        },
+        "library": {
+            "main_src_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\release\\java",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\main\\java"
+            ],
+            "main_res_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\release\\res",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\main\\res"
+            ],
+            "main_assets_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\release\\assets",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\main\\assets"
+            ],
+            "main_jni_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\release\\jni",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\main\\jni"
+            ],
+            "main_jniLibs_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\release\\jniLibs",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\main\\jniLibs"
+            ],
+            "main_manifest_path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library\\src\\main\\AndroidManifest.xml"
+        },
+        "fresco-helper": {
+            "main_src_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\release\\java",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\main\\java"
+            ],
+            "main_res_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\release\\res",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\main\\res"
+            ],
+            "main_assets_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\release\\assets",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\main\\assets"
+            ],
+            "main_jni_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\release\\jni",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\main\\jni"
+            ],
+            "main_jniLibs_directory": [
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\release\\jniLibs",
+                "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\main\\jniLibs"
+            ],
+            "main_manifest_path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper\\src\\main\\AndroidManifest.xml"
+        }
+    },
+    "modules": [
+        {
+            "name": "app",
+            "path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\app"
+        },
+        {
+            "name": "library",
+            "path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\library"
+        },
+        {
+            "name": "fresco-helper",
+            "path": "C:\\Users\\lanjian\\Desktop\\MasterHelper\\fresco-helper"
+        }
+    ],
+    "module_dependencies": {
+        "app": [
+            "library",
+            "fresco-helper"
+        ],
+        "library": [
+            
+        ],
+        "fresco-helper": [
+            
+        ]
+    },
+    "databinding": [
+        
+    ],
+    "databinding_modules": [
+        
+    ]
+}

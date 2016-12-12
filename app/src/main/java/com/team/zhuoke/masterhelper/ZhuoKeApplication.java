@@ -3,6 +3,7 @@ package com.team.zhuoke.masterhelper;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.team.zhuoke.masterhelper.api.NetWorkApi;
 import com.team.zhuoke.masterhelper.net.config.NetWorkConfiguration;
 import com.team.zhuoke.masterhelper.net.http.HttpUtils;
@@ -39,6 +40,8 @@ public class ZhuoKeApplication extends Application {
 
         L.init();
         initOkHttpUtils();
+
+        Fresco.initialize(mContext);
 		
 		// 预加载X5
 //        QbSdk.initX5Environment(getApplicationContext(), null);

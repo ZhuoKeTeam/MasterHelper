@@ -32,6 +32,8 @@ import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 import com.team.zhuoke.masterhelper.utils.adapter.BaseAdapter;
 import com.team.zhuoke.masterhelper.utils.adapter.CommonAdapter;
 import com.team.zhuoke.masterhelper.view.test.activity.TestActivity2;
+import com.team.zhuoke.masterhelper.view.test.activity.TestFresco2Activity;
+import com.team.zhuoke.masterhelper.view.test.activity.TestFrescoActivity;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
@@ -150,13 +152,13 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.icn_2);
         like.setBitmap(b);
 
-        MenuObject addFr = new MenuObject("Add to friends");
+        MenuObject addFr = new MenuObject("Fresco_Demo_1");
         BitmapDrawable bd = new BitmapDrawable(getResources(),
                 BitmapFactory.decodeResource(getResources(), R.drawable.icn_3));
         addFr.setDrawable(bd);
 
 
-        MenuObject addFav = new MenuObject("Add to favorites");
+        MenuObject addFav = new MenuObject("Fresco_Demo_2");
         addFav.setResource(R.drawable.icn_4);
 
         MenuObject aboutUs = new MenuObject("关于我们");
@@ -240,6 +242,14 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
             case 5:
                 //启动到关于我们的界面
                 startActivity(new Intent(getContext(), AboutUsActivity.class));
+                break;
+            case 4:
+                //启动到 Fresco-helper 使用界面
+                startActivity(new Intent(getContext(), TestFresco2Activity.class));
+                break;
+            case 3:
+                //启动到 Fresco-helper 使用界面
+                startActivity(new Intent(getContext(), TestFrescoActivity.class));
                 break;
             case 1:
                 //启动到 测试 MVP的界面
