@@ -23,6 +23,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import cn.trinea.android.common.util.ToastUtils;
 
 import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.DEVICE_ID;
 import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.DEVICE_INFO;
@@ -76,9 +77,11 @@ public class TestSharePreferencesActivity extends AppCompatActivity{
                     //  设备号随便存一个
                     SharePreferencesHelper.putString(DEVICE_ID,
                             "HUA_WEI_1092090", DEVICE_INFO);
+                    ToastUtils.show(TestSharePreferencesActivity.this, "数据保存成功");
                 } else {
                     SharePreferencesHelper.cleanSpWithName(USER_INFO);
                     SharePreferencesHelper.cleanSpWithName(DEVICE_INFO);
+                    ToastUtils.show(TestSharePreferencesActivity.this, "数据已清除");
                 }
             }
         });
