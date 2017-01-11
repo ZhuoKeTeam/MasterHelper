@@ -8,7 +8,6 @@ import com.team.zhuoke.masterhelper.api.NetWorkApi;
 import com.team.zhuoke.masterhelper.net.config.NetWorkConfiguration;
 import com.team.zhuoke.masterhelper.net.http.HttpUtils;
 import com.team.zhuoke.masterhelper.utils.L;
-import com.tencent.smtt.sdk.QbSdk;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
@@ -30,18 +29,18 @@ public class ZhuoKeApplication extends Application {
         return instance;
     }
 
-    private Context mContext;
+    private static Context sContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance=this;
-        mContext = this;
+        sContext = this;
 
         L.init();
         initOkHttpUtils();
 
-        Fresco.initialize(mContext);
+        Fresco.initialize(sContext);
 		
 		// 预加载X5
 //        QbSdk.initX5Environment(getApplicationContext(), null);
@@ -77,12 +76,8 @@ public class ZhuoKeApplication extends Application {
 
     }
 
-
-    public Context getmContext() {
-        return mContext;
+    public static Context getContext() {
+        return sContext;
     }
 
-    public void setmContext(Context mContext) {
-        this.mContext = mContext;
-    }
 }

@@ -34,6 +34,7 @@ import com.team.zhuoke.masterhelper.utils.adapter.CommonAdapter;
 import com.team.zhuoke.masterhelper.view.test.activity.TestActivity2;
 import com.team.zhuoke.masterhelper.view.test.activity.TestFresco2Activity;
 import com.team.zhuoke.masterhelper.view.test.activity.TestFrescoActivity;
+import com.team.zhuoke.masterhelper.view.test.activity.TestSharePreferencesActivity;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
@@ -149,7 +150,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
         MenuObject send = new MenuObject("第三 MVP 界面");
         send.setResource(R.drawable.icn_1);
 
-        MenuObject like = new MenuObject("Like profile");
+        MenuObject like = new MenuObject("SharePreferencesTest");
         Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.icn_2);
         like.setBitmap(b);
 
@@ -251,6 +252,10 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
             case 3:
                 //启动到 Fresco-helper 使用界面
                 startActivity(new Intent(getContext(), TestFrescoActivity.class));
+                break;
+            case 2:
+                //启动到 测试sp 使用界面
+                startActivity(new Intent(getContext(), TestSharePreferencesActivity.class));
                 break;
             case 1:
                 //启动到 测试 MVP的界面

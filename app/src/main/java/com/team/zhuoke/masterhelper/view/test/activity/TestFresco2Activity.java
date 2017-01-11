@@ -105,7 +105,7 @@ public class TestFresco2Activity extends BaseActivity<FrescoModel, FrescoPresent
             mFrescoView9.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(TestFresco2Activity.this, "...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TestFresco2Activity.this, "谁谁谁", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -133,10 +133,4 @@ public class TestFresco2Activity extends BaseActivity<FrescoModel, FrescoPresent
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
-    }
 }

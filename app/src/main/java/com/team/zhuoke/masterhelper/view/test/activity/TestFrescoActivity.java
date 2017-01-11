@@ -69,13 +69,6 @@ public class TestFrescoActivity extends BaseActivity<FrescoModel, FrescoPresente
         return this;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
-    }
-
     class GirlListAdapter extends RecyclerView.Adapter<GirlHolder> {
 
         @Override
