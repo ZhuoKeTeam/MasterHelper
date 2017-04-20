@@ -1,5 +1,6 @@
 package com.team.zhuoke.masterhelper.fragment.marster;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -8,15 +9,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.team.zhuoke.masterhelper.R;
+import com.team.zhuoke.masterhelper.base.BaseView;
+import com.team.zhuoke.masterhelper.fragment.MasterInfoBean;
 import com.team.zhuoke.masterhelper.utils.backfragmentutils.BackFragment;
 import com.yalantis.euclid.library.EuclidFragment;
 import com.yalantis.euclid.library.EuclidListAdapter;
 import com.yalantis.euclid.library.EuclidState;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Doraemon on 2016/11/29.
@@ -24,8 +24,36 @@ import java.util.Map;
  * 还未修改成MVP模式
  */
 
-public class EuclidChildFragment extends EuclidFragment implements BackFragment {
+public class EuclidChildFragment extends EuclidFragment<MasterModel, MasterPresenter> implements BackFragment, MasterContract.View {
     private ToolBarBackClickLister toolBarBackClickLister;
+    private EuclidListAdapter adapter;
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected void onInitView(Bundle bundle) {
+
+    }
+
+    @Override
+    protected void onEvent() {
+
+    }
+
+    @Override
+    protected BaseView getViewImp() {
+        return this;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (mPresenter != null)
+            mPresenter.getMasterList();
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -39,36 +67,14 @@ public class EuclidChildFragment extends EuclidFragment implements BackFragment 
             }
         });
         setTitle("大神");
+
+        mPresenter.getMasterList();
     }
 
     @Override
     protected BaseAdapter getAdapter() {
-        Map<String, Object> profileMap;
-        List<Map<String, Object>> profilesList = new ArrayList<>();
-
-        int[] avatars = {
-                R.drawable.photo,
-                R.drawable.photo,
-                R.drawable.photo,
-                R.drawable.photo,
-                R.drawable.photo,
-                R.drawable.photo,
-                R.drawable.photo,
-                R.drawable.photo,
-                R.drawable.photo
-        };
-        String[] names = {"master1", "master1", "master1", "master1", "master1", "master1", "master1", "master1", "master1"};
-
-        for (int i = 0; i < avatars.length; i++) {
-            profileMap = new HashMap<>();
-            profileMap.put(EuclidListAdapter.KEY_AVATAR, avatars[i]);
-            profileMap.put(EuclidListAdapter.KEY_NAME, names[i]);
-            profileMap.put(EuclidListAdapter.KEY_DESCRIPTION_SHORT, getString(R.string.lorem_ipsum_short));
-            profileMap.put(EuclidListAdapter.KEY_DESCRIPTION_FULL, getString(R.string.lorem_ipsum_long));
-            profilesList.add(profileMap);
-        }
-
-        return new EuclidListAdapter(getActivity(), R.layout.list_item, profilesList);
+        adapter = new EuclidListAdapter(getContext(), null);
+        return adapter;
     }
 
     public void setToolBarBackClickLister(ToolBarBackClickLister toolBarBackClickLister) {
@@ -87,6 +93,17 @@ public class EuclidChildFragment extends EuclidFragment implements BackFragment 
     @Override
     public int getBackPriority() {
         return 0;
+    }
+
+    @Override
+    public void setData(List<MasterInfoBean> masterInfoBeanList) {
+        adapter.setData(masterInfoBeanList);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setErrorInfo(String message) {
+
     }
 
     /**

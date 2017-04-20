@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/wrapper_list_item"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:background="@color/gray">
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/wrapper_list_item"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:background="@color/gray">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/image_view_avatar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_profile_image"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:paddingBottom="1dp"
-        tools:src="@drawable/nicolas_cage" />
+        android:padding="5dp"
+        app:fadeDuration="1800"/>
     <!--Add 1dp bottom padding to remove weird flickering while animating-->
 
     <View
@@ -27,7 +27,6 @@
         android:id="@+id/text_view_name"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:textAllCaps="true"
         android:gravity="center_horizontal"
         android:singleLine="true"
         android:fontFamily="sans-serif-thin"
@@ -37,6 +36,24 @@
         android:layout_below="@+id/image_view_avatar"
         tools:text="RICHARD"
         android:layout_margin="10dp" />
+
+
+
+    <TextView
+        android:id="@+id/text_view_nick_name"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:fontFamily="sans-serif-thin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text_view_name"
+        tools:text="RICHARDfjalsjfldsajf"
+        android:layout_margin="10dp" />
+
 
     <TextView
         android:id="@+id/text_view_description"
@@ -49,7 +66,7 @@
         android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_name"
+        android:layout_below="@+id/text_view_nick_name"
         tools:text="@string/lorem_ipsum_short" />
 
 </RelativeLayout>

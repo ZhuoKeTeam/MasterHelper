@@ -8,7 +8,6 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +27,10 @@ import android.widget.TextView;
 import com.nhaarman.listviewanimations.appearance.ViewAnimator;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
 import com.squareup.picasso.Picasso;
+import com.team.zhuoke.masterhelper.R;
+import com.team.zhuoke.masterhelper.base.BaseFragment;
+import com.team.zhuoke.masterhelper.base.BaseModel;
+import com.team.zhuoke.masterhelper.base.BasePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +42,7 @@ import io.codetail.animation.ViewAnimationUtils;
 /**
  * Created by Oleksii Shliama on 1/27/15.
  */
-public abstract class EuclidFragment extends Fragment {
+public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter> extends BaseFragment<M, P> {
 
     private static final int REVEAL_ANIMATION_DURATION = 1000;
     private static final int MAX_DELAY_SHOW_DETAILS_ANIMATION = 500;

@@ -10,7 +10,6 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -27,6 +26,7 @@ import android.widget.TextView;
 import com.nhaarman.listviewanimations.appearance.ViewAnimator;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
 import com.squareup.picasso.Picasso;
+import com.team.zhuoke.masterhelper.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -490,14 +490,14 @@ public abstract class EuclidActivity extends Activity {
     /**
      * To use EuclidActivity class, at least this method must be implemented, with your own data.
      *
-     * @return - adapter with data. Check {@link com.yalantis.euclid.library.EuclidListAdapter}
+     * @return - adapter with data. Check {@link EuclidListAdapter}
      */
     protected abstract BaseAdapter getAdapter();
 
     /**
      * Returns current profile details state.
      *
-     * @return - {@link com.yalantis.euclid.library.EuclidState}
+     * @return - {@link EuclidState}
      */
     public EuclidState getState() {
         return mState;

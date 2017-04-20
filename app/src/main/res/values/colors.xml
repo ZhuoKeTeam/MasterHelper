@@ -7,4 +7,11 @@
     <color name="text_white_color">#ffffff</color>
     <color name="bg_gray_color">#5999</color>
     <color name="btn_ok_pressed">#ff4248</color>
+
+    <color name="gray">#21252a</color>
+    <color name="orange">#ff8c6a</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="blue">#ff14445a</color>
+    <color name="light_blue">#FF303F9F</color>
 </resources>

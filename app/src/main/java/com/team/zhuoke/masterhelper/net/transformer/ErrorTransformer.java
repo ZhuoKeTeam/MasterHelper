@@ -25,12 +25,12 @@ public class ErrorTransformer<T> implements Observable.Transformer<HttpResponse<
         return httpResponseObservable.map(new Func1<HttpResponse<T>, T>() {
             @Override
             public T call(HttpResponse<T> tHttpResponse) {
-                if (!tHttpResponse.getCode().equals( "200")) {
+                if (!tHttpResponse.getCode().equals( "0")) {
                     //如果服务器端有错误信息返回，那么抛出异常，让下面的方法去捕获异常做统一处理
-                    throw  new ServerException(tHttpResponse.getMsg(),Integer.parseInt(tHttpResponse.getCode()));
+                    throw  new ServerException(tHttpResponse.getMessage(),Integer.parseInt(tHttpResponse.getCode()));
                 }
 //                //服务器请求数据成功，返回里面的数据实体
-                return tHttpResponse.getData();
+                return tHttpResponse.getResult();
             }
 //            对请求服务器出现错误信息进行拦截
         }).onErrorResumeNext(new Func1<Throwable, Observable<? extends T>>() {

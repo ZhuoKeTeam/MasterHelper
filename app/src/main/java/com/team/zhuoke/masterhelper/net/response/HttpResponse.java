@@ -13,17 +13,9 @@ public class HttpResponse<T> {
 
      private String code ;
 
-    private T data;
+    private T result;
 
-     private String msg;
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
+     private String message;
 
     public String getCode() {
         return code;
@@ -33,20 +25,28 @@ public class HttpResponse<T> {
         this.code = code;
     }
 
-    public T getData() {
-        return data;
+    public T getResult() {
+        return result;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setResult(T result) {
+        this.result = result;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override
     public String toString() {
-        return "HttpResponse{" +
-                "code='" + code + '\'' +
-                ", data=" + data +
-                ", msg='" + msg + '\'' +
+        return "{" +
+                "code:'" + code + '\'' +
+                ", result:" + result +
+                ", message:'" + message + '\'' +
                 '}';
     }
 }

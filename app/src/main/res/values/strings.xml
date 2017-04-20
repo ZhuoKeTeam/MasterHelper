@@ -15,4 +15,17 @@
     <string name="our_github">Github：https://github.com/ZhuoKeTeam</string>
     <string name="fengy_words">北京_Fengy：做程序员中才艺最多的人！</string>
     <string name="fragment_main_title">主页</string>
+
+
+
+
+    <string name="lorem_ipsum_short">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+
+    <string name="title_following">Following</string>
+    <string name="toolbar_bio">Bio</string>
+    <string name="toolbar_details">Details</string>
+
 </resources>
