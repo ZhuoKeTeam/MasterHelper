@@ -24,6 +24,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.fresco.helper.ImageLoader;
 import com.nhaarman.listviewanimations.appearance.ViewAnimator;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
 import com.squareup.picasso.Picasso;
@@ -31,6 +33,7 @@ import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.base.BaseFragment;
 import com.team.zhuoke.masterhelper.base.BaseModel;
 import com.team.zhuoke.masterhelper.base.BasePresenter;
+import com.team.zhuoke.masterhelper.fragment.MasterInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,7 +138,9 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mState = EuclidState.Opening;
-                showProfileDetails((Map<String, Object>) parent.getItemAtPosition(position), view);
+                MasterInfoBean masterInfoBean = (MasterInfoBean) parent.getAdapter().getItem(position);
+                if (masterInfoBean != null)
+                    showProfileDetails(masterInfoBean, view);
             }
         });
     }
@@ -143,11 +148,10 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
     /**
      * This method counts delay before profile toolbar and profile details start their transition
      * animations, depending on clicked list item on-screen position.
-     *
-     * @param item - data from adapter, that will be set into overlay view.
+     *  @param item - data from adapter, that will be set into overlay view.
      * @param view - clicked view.
      */
-    private void showProfileDetails(Map<String, Object> item, final View view) {
+    private void showProfileDetails(MasterInfoBean item, final View view) {
         mListView.setEnabled(false);
 
         int profileDetailsAnimationDelay = getMaxDelayShowDetailsAnimation() * Math.abs(view.getTop())
@@ -160,11 +164,10 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
 
     /**
      * This method inflates a clone of clicked view directly above it. Sets data into it.
-     *
-     * @param item - data from adapter, that will be set into overlay view.
+     *  @param item - data from adapter, that will be set into overlay view.
      * @param view - clicked view.
      */
-    private void addOverlayListItem(Map<String, Object> item, View view) {
+    private void addOverlayListItem(MasterInfoBean item, View view) {
         if (mOverlayListItemView == null) {
             mOverlayListItemView = getActivity().getLayoutInflater().inflate(R.layout.overlay_list_item, mWrapper, false);
         } else {
@@ -172,18 +175,31 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
         }
 
         mOverlayListItemView.findViewById(R.id.view_avatar_overlay).setBackground(sOverlayShape);
-        Picasso.with(getActivity()).load((Integer) item.get(EuclidListAdapter.KEY_AVATAR))
-                .resize(sScreenWidth, sProfileImageHeight).centerCrop()
-                .placeholder(R.color.blue)
-                .into((ImageView) mOverlayListItemView.findViewById(R.id.image_view_reveal_avatar));
-        Picasso.with(getActivity()).load((Integer) item.get(EuclidListAdapter.KEY_AVATAR))
-                .resize(sScreenWidth, sProfileImageHeight).centerCrop()
-                .placeholder(R.color.blue)
-                .into((ImageView) mOverlayListItemView.findViewById(R.id.image_view_avatar));
 
-        ((TextView) mOverlayListItemView.findViewById(R.id.text_view_name)).setText((String) item.get(EuclidListAdapter.KEY_NAME));
-        ((TextView) mOverlayListItemView.findViewById(R.id.text_view_description)).setText((String) item.get(EuclidListAdapter.KEY_DESCRIPTION_SHORT));
-        setProfileDetailsInfo(item);
+
+        SimpleDraweeView revealAvatarIV = (SimpleDraweeView) mOverlayListItemView.findViewById(R.id.image_view_reveal_avatar);
+        SimpleDraweeView avatarIV = (SimpleDraweeView) mOverlayListItemView.findViewById(R.id.image_view_avatar);
+
+        ImageLoader.loadImage(revealAvatarIV, item.getImg());
+        ImageLoader.loadImage(avatarIV, item.getImg());
+
+
+//        Picasso.with(getActivity()).load((Integer) item.get(EuclidListAdapter.KEY_AVATAR))
+//                .resize(sScreenWidth, sProfileImageHeight).centerCrop()
+//                .placeholder(R.color.blue)
+//                .into((ImageView) mOverlayListItemView.findViewById(R.id.image_view_reveal_avatar));
+//        Picasso.with(getActivity()).load((Integer) item.get(EuclidListAdapter.KEY_AVATAR))
+//                .resize(sScreenWidth, sProfileImageHeight).centerCrop()
+//                .placeholder(R.color.blue)
+//                .into((ImageView) mOverlayListItemView.findViewById(R.id.image_view_avatar));
+
+
+
+
+
+        ((TextView) mOverlayListItemView.findViewById(R.id.text_view_name)).setText(item.getName());
+        ((TextView) mOverlayListItemView.findViewById(R.id.text_view_description)).setText(item.getInfo());
+
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.topMargin = view.getTop() + mToolbar.getHeight();

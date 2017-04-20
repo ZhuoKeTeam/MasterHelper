@@ -20,7 +20,7 @@
         android:visibility="invisible"
         android:background="@color/gray">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/image_view_reveal_avatar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_profile_image"

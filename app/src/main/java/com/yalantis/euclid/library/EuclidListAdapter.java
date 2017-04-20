@@ -45,7 +45,9 @@ public class EuclidListAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return mData.get(position);
+        if (mData != null)
+            return mData.get(position);
+        return null;
     }
 
     @Override
