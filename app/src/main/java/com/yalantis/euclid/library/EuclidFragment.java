@@ -199,6 +199,7 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
 
         ((TextView) mOverlayListItemView.findViewById(R.id.text_view_name)).setText(item.getName());
         ((TextView) mOverlayListItemView.findViewById(R.id.text_view_description)).setText(item.getInfo());
+        mTextViewProfileDescription.setText(String.format("%s\n\n\n%s", item.getNick_name(), item.getInfo()));
 
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
