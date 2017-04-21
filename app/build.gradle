@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.antfortune.freeline'
+//2. 默认关闭 freeline, 需要的时候开启
+//apply plugin: 'com.antfortune.freeline'
 
 
 android {
