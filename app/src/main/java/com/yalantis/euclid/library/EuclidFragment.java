@@ -178,24 +178,7 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
 
 
         SimpleDraweeView revealAvatarIV = (SimpleDraweeView) mOverlayListItemView.findViewById(R.id.image_view_reveal_avatar);
-        SimpleDraweeView avatarIV = (SimpleDraweeView) mOverlayListItemView.findViewById(R.id.image_view_avatar);
-
         ImageLoader.loadImage(revealAvatarIV, item.getImg());
-        ImageLoader.loadImage(avatarIV, item.getImg());
-
-
-//        Picasso.with(getActivity()).load((Integer) item.get(EuclidListAdapter.KEY_AVATAR))
-//                .resize(sScreenWidth, sProfileImageHeight).centerCrop()
-//                .placeholder(R.color.blue)
-//                .into((ImageView) mOverlayListItemView.findViewById(R.id.image_view_reveal_avatar));
-//        Picasso.with(getActivity()).load((Integer) item.get(EuclidListAdapter.KEY_AVATAR))
-//                .resize(sScreenWidth, sProfileImageHeight).centerCrop()
-//                .placeholder(R.color.blue)
-//                .into((ImageView) mOverlayListItemView.findViewById(R.id.image_view_avatar));
-
-
-
-
 
         ((TextView) mOverlayListItemView.findViewById(R.id.text_view_name)).setText(item.getName());
         ((TextView) mOverlayListItemView.findViewById(R.id.text_view_description)).setText(item.getInfo());

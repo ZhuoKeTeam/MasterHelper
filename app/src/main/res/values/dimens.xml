@@ -19,13 +19,13 @@
     <dimen name="corner_radius_oval">16dp</dimen>
 
     <dimen name="height_toolbar">70dp</dimen>
-    <dimen name="height_profile_image">250dp</dimen>
+    <dimen name="height_profile_image">300dp</dimen>
 
     <!-- sum of *height_toolbar* and *height_profile_image* -->
-    <dimen name="height_profile_picture_with_toolbar">320dp</dimen>
+    <dimen name="height_profile_picture_with_toolbar">400dp</dimen>
 
     <dimen name="size_button_message">60dp</dimen>
 
     <!-- *height_profile_picture_with_toolbar* - half of *size_button_message* -->
-    <dimen name="margin_top_button_message">290dp</dimen>
+    <dimen name="margin_top_button_message">370dp</dimen>
 </resources>
