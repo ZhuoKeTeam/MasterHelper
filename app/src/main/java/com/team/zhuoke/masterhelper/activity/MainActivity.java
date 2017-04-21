@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void initView() {
         mNavigationView.setNavigationItemSelectedListener(this);
-        mNavigationView.setCheckedItem(R.id.nav_home);
+//        mNavigationView.setCheckedItem(R.id.nav_home);
     }
 
     private void bindFragment(Bundle savedInstanceState) {
@@ -55,10 +55,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return;
             }
         }
-        mFragmentManager.beginTransaction()
-                .add(R.id.main_fl_container, MainFragment.getInstance())
-                .commit();
 
+
+        if (profileFragment == null) {
+            profileFragment = new ProfileFragment();
+        }
+
+        mFragmentManager.beginTransaction()
+                .add(R.id.main_fl_container, profileFragment)
+                .commit();
     }
 
     @Override
@@ -76,12 +81,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mNavigationView.setCheckedItem(item.getItemId());
         switch (item.getItemId()) {
-            // TODO: 16-11-23 侧面菜单点击
-            case R.id.nav_home:
-                if (!MainFragment.getInstance().isVisible()) {
-                    mFragmentManager.beginTransaction().show(MainFragment.getInstance()).hide(profileFragment).commit();
-                }
-                break;
+//            // TODO: 16-11-23 侧面菜单点击
+//            case R.id.nav_home:
+//                if (!MainFragment.getInstance().isVisible()) {
+//                    mFragmentManager.beginTransaction().show(MainFragment.getInstance()).hide(profileFragment).commit();
+//                }
+//                break;
             case R.id.nav_master:
                 if (profileFragment == null) {
                     profileFragment = new ProfileFragment();
