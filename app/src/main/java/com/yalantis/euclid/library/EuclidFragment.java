@@ -28,7 +28,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.fresco.helper.ImageLoader;
 import com.nhaarman.listviewanimations.appearance.ViewAnimator;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
-import com.squareup.picasso.Picasso;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.base.BaseFragment;
 import com.team.zhuoke.masterhelper.base.BaseModel;
