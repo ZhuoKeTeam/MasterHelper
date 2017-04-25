@@ -17,7 +17,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="left"
             android:padding="15dp"
-            android:scaleType="center"/>
+            android:scaleType="center" />
 
         <TextView
             android:id="@+id/fragment_title"
@@ -35,7 +35,8 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar_list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:background="@color/gray"
         android:divider="@drawable/list_divider"
         tools:listitem="@layout/list_item" />
@@ -66,6 +67,7 @@
             android:background="@drawable/bg_black_oval">
 
             <TextView
+                android:id="@+id/tv_bio"
                 style="@style/TextViewProfileToolbarTitle"
                 android:layout_margin="2dp"
                 android:background="@drawable/bg_orange_oval"
@@ -73,63 +75,83 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/tv_list"
                 style="@style/TextViewProfileToolbarTitle"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:text="@string/toolbar_details"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_orange_oval"
                 android:textColor="@color/white" />
 
         </RelativeLayout>
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/wrapper_profile_details"
+    <RelativeLayout
+        android:id="@+id/layout_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/height_profile_picture_with_toolbar"
-        android:background="@color/white"
-        android:clickable="true"
-        android:orientation="vertical"
-        android:visibility="invisible">
+        android:layout_below="@+id/toolbar_list">
 
-        <TextView
-            android:id="@+id/text_view_profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/gray"
-            android:textSize="32sp"
-            tools:text="SOPHIA" />
-
-        <ScrollView
+        <LinearLayout
+            android:id="@+id/wrapper_profile_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginTop="@dimen/height_profile_picture_with_toolbar"
+            android:background="@color/white"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <TextView
-                android:id="@+id/text_view_profile_description"
-                android:layout_width="match_parent"
+                android:id="@+id/text_view_profile_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
+                android:layout_margin="10dp"
+                android:fontFamily="sans-serif-light"
                 android:textColor="@color/gray"
-                android:textSize="18sp"
-                tools:text="@string/lorem_ipsum_long" />
+                android:textSize="32sp"
+                tools:text="SOPHIA" />
 
-        </ScrollView>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/text_view_profile_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    tools:text="@string/lorem_ipsum_long" />
 
-    <include
-        android:id="@+id/button_profile"
-        layout="@layout/button_round_msg"
-        android:layout_width="@dimen/size_button_message"
-        android:layout_height="@dimen/size_button_message"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="@dimen/margin_top_button_message"
-        android:visibility="invisible" />
+            </ScrollView>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/button_profile"
+            layout="@layout/button_round_msg"
+            android:layout_width="@dimen/size_button_message"
+            android:layout_height="@dimen/size_button_message"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="@dimen/margin_top_button_message"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/layout_article_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_list"
+        android:background="@color/white"
+        android:visibility="gone" />
 
 </RelativeLayout>

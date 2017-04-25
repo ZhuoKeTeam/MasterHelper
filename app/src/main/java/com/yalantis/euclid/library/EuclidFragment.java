@@ -3,9 +3,11 @@ package com.yalantis.euclid.library;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -28,7 +30,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.fresco.helper.ImageLoader;
 import com.nhaarman.listviewanimations.appearance.ViewAnimator;
 import com.nhaarman.listviewanimations.appearance.simple.SwingLeftInAnimationAdapter;
-import com.squareup.picasso.Picasso;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.base.BaseFragment;
 import com.team.zhuoke.masterhelper.base.BaseModel;
@@ -58,6 +59,7 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
     protected RelativeLayout mWrapper;
     protected ListView mListView;
     protected FrameLayout mToolbar;
+    protected FrameLayout mList;
     protected RelativeLayout mToolbarProfile;
     protected LinearLayout mProfileDetails;
     protected TextView mTextViewProfileName;
@@ -65,6 +67,8 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
     protected View mButtonProfile;
     protected ImageView mToolbarBack;
     private TextView mTitle;
+    protected TextView mTextViewBio, mTextViewList;
+    protected RelativeLayout mContentLayout;
 
     public static ShapeDrawable sOverlayShape;
     static int sScreenWidth;
@@ -73,7 +77,7 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
     private SwingLeftInAnimationAdapter mListViewAnimationAdapter;
     private ViewAnimator mListViewAnimator;
 
-    private View mOverlayListItemView;
+    protected View mOverlayListItemView;
     private EuclidState mState = EuclidState.Closed;
 
     private float mInitialProfileButtonX;
@@ -92,13 +96,20 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
         mProfileDetails = (LinearLayout) view.findViewById(R.id.wrapper_profile_details);
         mTextViewProfileName = (TextView) view.findViewById(R.id.text_view_profile_name);
         mTextViewProfileDescription = (TextView) view.findViewById(R.id.text_view_profile_description);
+        mList = (FrameLayout) view.findViewById(R.id.layout_article_list);
         mButtonProfile = view.findViewById(R.id.button_profile);
         mToolbarBack=(ImageView)view.findViewById(R.id.toolbar_list_back);
         mTitle = (TextView) view.findViewById(R.id.fragment_title);
+        mTextViewBio = (TextView) view.findViewById(R.id.tv_bio);
+        mTextViewList = (TextView) view.findViewById(R.id.tv_list);
+        mContentLayout = (RelativeLayout) view.findViewById(R.id.layout_content);
         view.findViewById(R.id.toolbar_profile_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 animateCloseProfileDetails();
+                mList.setVisibility(View.GONE);
+                mListView.setVisibility(View.VISIBLE);
+                mContentLayout.setVisibility(View.VISIBLE);
             }
         });
         init();
@@ -139,11 +150,15 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mState = EuclidState.Opening;
                 MasterInfoBean masterInfoBean = (MasterInfoBean) parent.getAdapter().getItem(position);
-                if (masterInfoBean != null)
+                if (masterInfoBean != null) {
                     showProfileDetails(masterInfoBean, view);
+                    initList(masterInfoBean);
+                }
             }
         });
     }
+
+    public abstract void initList(MasterInfoBean masterInfoBean);
 
     /**
      * This method counts delay before profile toolbar and profile details start their transition
@@ -167,6 +182,7 @@ public abstract class EuclidFragment<M extends BaseModel,P extends BasePresenter
      *  @param item - data from adapter, that will be set into overlay view.
      * @param view - clicked view.
      */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void addOverlayListItem(MasterInfoBean item, View view) {
         if (mOverlayListItemView == null) {
             mOverlayListItemView = getActivity().getLayoutInflater().inflate(R.layout.overlay_list_item, mWrapper, false);

@@ -17,9 +17,8 @@ public class NetWorkApi {
     public static final String getMasterList = "/master_list.json";
     public static final String getTestList = "/master_list.json";
 
-    public static final String newBaseUrl = "http://www.zkteam.cc/api";
+    public static final String newBaseUrl = "http://www.zkteam.cc";
 
-    public static final String masterInfo = newBaseUrl + "/jsonMasterInfo";
-    public static final String masterArticle = newBaseUrl + "/jsonMasterArticle";
-
+    public static final String masterInfo = newBaseUrl + "/api/jsonMasterInfo";
+    public static final String masterArticle = "/api/jsonMasterArticle";
 }
