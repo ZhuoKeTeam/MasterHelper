@@ -5,12 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.team.zhuoke.masterhelper.R;
+import com.team.zhuoke.masterhelper.activity.PageCtrl;
 import com.team.zhuoke.masterhelper.fragment.ArticleInfoBean;
 
 import java.util.List;
@@ -54,8 +55,12 @@ public class ArticleListFragment extends Fragment implements ArticleListContract
     public void setData(List<ArticleInfoBean> datas) {
         if (datas == null || datas.size() <= 0)
             return;
-        Log.i("renxl", datas.size() + "数量");
         adapter = new ArticleListAdapter(datas);
+        adapter.setOnItemClickListener(position -> {
+            if (TextUtils.isEmpty(datas.get(position).getArticle_title()) || TextUtils.isEmpty(datas.get(position).getArticle_address()))
+                return;
+            PageCtrl.startArticleDetailActivity(getActivity(), datas.get(position).getArticle_address(), datas.get(position).getArticle_title());
+        });
         recycleviewArticles.setAdapter(adapter);
         recycleviewArticles.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         recycleviewArticles.setLayoutManager(new LinearLayoutManager(getContext()));

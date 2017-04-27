@@ -41,9 +41,9 @@
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".WebViewActivity" />
         <activity android:name=".view.test.activity.TestFrescoActivity" />
-        <activity android:name=".view.test.activity.TestFresco2Activity"></activity>
-        <activity android:name=".view.test.activity.TestSharePreferencesActivity"></activity>
-        <activity android:name="wq.gdy005.mvp.TestActivity3"/>
+        <activity android:name=".view.test.activity.TestFresco2Activity" />
+        <activity android:name=".view.test.activity.TestSharePreferencesActivity" />
+        <activity android:name="wq.gdy005.mvp.TestActivity3" />
     </application>
 
 </manifest>

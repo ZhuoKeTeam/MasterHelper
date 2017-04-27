@@ -1,9 +1,8 @@
 package com.team.zhuoke.masterhelper.fragment.marster;
 
-import android.util.Log;
-
 import com.team.zhuoke.masterhelper.fragment.ArticleInfoBean;
 import com.team.zhuoke.masterhelper.fragment.BaseBean;
+import com.team.zhuoke.masterhelper.utils.L;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -35,13 +34,13 @@ class ArticleListPresenter extends ArticleListContract.IArticleListPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("renxl", e.getMessage());
+                        L.d(e.getMessage());
                     }
 
                     @Override
                     public void onNext(BaseBean<ArticleInfoBean> articleInfoBeanBaseBean) {
 
-                        Log.i("renxl", articleInfoBeanBaseBean.toString());
+                        L.d("renxl", articleInfoBeanBaseBean.toString());
 
                         mArticleListView.setData(articleInfoBeanBaseBean.getResult());
                     }

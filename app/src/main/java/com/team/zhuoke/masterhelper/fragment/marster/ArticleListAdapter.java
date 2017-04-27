@@ -20,9 +20,14 @@ import java.util.List;
 class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
 
     private List<ArticleInfoBean> mDatas;
+    private OnItemClickListener mOnItemClickListener;
 
     ArticleListAdapter(List<ArticleInfoBean> datas) {
         mDatas = datas;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 
     public void setData(List<ArticleInfoBean> datas) {
@@ -41,6 +46,8 @@ class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ViewHol
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (mOnItemClickListener != null)
+            holder.tvTitle.setOnClickListener(v -> mOnItemClickListener.onItemClick(position));
         if (mDatas.get(position) != null && !TextUtils.isEmpty(mDatas.get(position).getArticle_title()))
             holder.tvTitle.setText(mDatas.get(position).getArticle_title());
         else
@@ -59,5 +66,9 @@ class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ViewHol
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.tv_articles_article_title);
         }
+    }
+
+    interface OnItemClickListener {
+        void onItemClick(int position);
     }
 }
