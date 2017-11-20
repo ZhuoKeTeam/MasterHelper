@@ -2,13 +2,10 @@ package com.team.zhuoke.masterhelper.view.test.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.fresco.helper.ImageLoader;
-import com.facebook.fresco.helper.Phoenix;
-import com.facebook.fresco.helper.utils.DensityUtil;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.base.BaseActivity;
 import com.team.zhuoke.masterhelper.base.BaseView;
@@ -18,36 +15,35 @@ import com.team.zhuoke.masterhelper.presenter.test.imp.FrescoPresenter;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class TestFresco2Activity extends BaseActivity<FrescoModel, FrescoPresenter> implements FrescoView {
 
-    @InjectView(R.id.sdv_1)
+    @BindView(R.id.sdv_1)
     SimpleDraweeView mFrescoView1;
-    @InjectView(R.id.sdv_2)
+    @BindView(R.id.sdv_2)
     SimpleDraweeView mFrescoView2;
-    @InjectView(R.id.sdv_3)
+    @BindView(R.id.sdv_3)
     SimpleDraweeView mFrescoView3;
-    @InjectView(R.id.sdv_4)
+    @BindView(R.id.sdv_4)
     SimpleDraweeView mFrescoView4;
-    @InjectView(R.id.sdv_5)
+    @BindView(R.id.sdv_5)
     SimpleDraweeView mFrescoView5;
-    @InjectView(R.id.sdv_6)
+    @BindView(R.id.sdv_6)
     SimpleDraweeView mFrescoView6;
-    @InjectView(R.id.sdv_7)
+    @BindView(R.id.sdv_7)
     SimpleDraweeView mFrescoView7;
-    @InjectView(R.id.sdv_8)
+    @BindView(R.id.sdv_8)
     SimpleDraweeView mFrescoView8;
-    @InjectView(R.id.sdv_9)
+    @BindView(R.id.sdv_9)
     SimpleDraweeView mFrescoView9;
-    @InjectView(R.id.sdv_10)
+    @BindView(R.id.sdv_10)
     SimpleDraweeView mFrescoView10;
-    @InjectView(R.id.sdv_11)
+    @BindView(R.id.sdv_11)
     SimpleDraweeView mFrescoView11;
-    @InjectView(R.id.sdv_12)
+    @BindView(R.id.sdv_12)
     SimpleDraweeView mFrescoView12;
-    @InjectView(R.id.sdv_13)
+    @BindView(R.id.sdv_13)
     SimpleDraweeView mFrescoView13;
 
     @Override

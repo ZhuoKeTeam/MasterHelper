@@ -10,28 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.team.zhuoke.masterhelper.R;
-import com.team.zhuoke.masterhelper.base.BaseActivity;
-import com.team.zhuoke.masterhelper.base.BaseView;
-import com.team.zhuoke.masterhelper.model.test.SharePreferencesModel;
-import com.team.zhuoke.masterhelper.model.test.SharePreferencesView;
-import com.team.zhuoke.masterhelper.presenter.test.imp.SharePreferencesPresenter;
 import com.team.zhuoke.masterhelper.utils.SharePreferencesHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
 import cn.trinea.android.common.util.ToastUtils;
 
 import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.DEVICE_ID;
 import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.DEVICE_INFO;
 import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.USER_ACCOUNT;
 import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.USER_INFO;
-import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.USER_NAME;
 import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.USER_PWD;
-import static com.team.zhuoke.masterhelper.utils.SharePreferencesHelper.getString;
 
 /**
  * Created by admin on 2017/1/11.

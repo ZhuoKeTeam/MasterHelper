@@ -8,7 +8,7 @@ import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.base.BaseActivity;
 import com.team.zhuoke.masterhelper.base.BaseView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -16,9 +16,9 @@ import butterknife.OnClick;
  */
 
 public class TestActivity3 extends BaseActivity<Test3Model, Test3Presenter> implements Test3Contract.View {
-    @InjectView(R.id.edit_text)
+    @BindView(R.id.edit_text)
     EditText editText;
-    @InjectView(R.id.btn_home)
+    @BindView(R.id.btn_home)
     Button btnHome;
 
     @Override

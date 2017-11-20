@@ -7,7 +7,6 @@ import android.widget.EditText;
 import com.team.zhuoke.masterhelper.R;
 import com.team.zhuoke.masterhelper.base.BaseActivity;
 import com.team.zhuoke.masterhelper.base.BaseView;
-import com.team.zhuoke.masterhelper.model.annotation.Implement;
 import com.team.zhuoke.masterhelper.model.test.MasterList;
 import com.team.zhuoke.masterhelper.model.test.MasterListModel;
 import com.team.zhuoke.masterhelper.presenter.test.imp.MasterListPresenterImp;
@@ -15,8 +14,7 @@ import com.team.zhuoke.masterhelper.presenter.test.interfaces.MasterListContract
 
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -28,9 +26,9 @@ import butterknife.OnClick;
  * 修改时间：${DATA}1722
  */
 public class TestActivity extends BaseActivity<MasterListModel,MasterListPresenterImp> implements MasterListContract.View {
-    @InjectView(R.id.btn_home)
+    @BindView(R.id.btn_home)
     Button btnHome;
-    @InjectView(R.id.ed_data)
+    @BindView(R.id.ed_data)
      EditText edData;
 
     @Override

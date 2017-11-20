@@ -2,13 +2,11 @@ package com.team.zhuoke.masterhelper.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
 import com.team.zhuoke.masterhelper.model.ContractProxy;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-import static com.team.zhuoke.masterhelper.model.ContractProxy.getViewClazz;
 
 
 /**
@@ -60,7 +58,7 @@ public abstract class BaseActivity<M extends  BaseModel , P extends BasePresente
              setContentView(getLayoutId());
             bindMVP();
             //        注解绑定
-            ButterKnife.inject(this);
+            ButterKnife.bind(this);
             onInitView(savedInstanceState);
             onEvent();
         }
@@ -106,7 +104,6 @@ public abstract class BaseActivity<M extends  BaseModel , P extends BasePresente
     @Override
     protected void onDestroy() {
         super.onDestroy();
-       ButterKnife.reset(this);
         if(mPresenter!=null)
         {
             ContractProxy.getInstance().unbindView(getView(),mPresenter);

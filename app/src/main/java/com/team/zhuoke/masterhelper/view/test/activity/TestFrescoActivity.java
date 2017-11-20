@@ -21,12 +21,12 @@ import com.team.zhuoke.masterhelper.presenter.test.imp.FrescoPresenter;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class TestFrescoActivity extends BaseActivity<FrescoModel, FrescoPresenter> implements FrescoView {
     private static final String TAG = "TestFrescoActivity";
-    @InjectView(R.id.rv_girl_list)
+    @BindView(R.id.rv_girl_list)
     RecyclerView mGirlListView;
     private List<String> mGirlList;
     private GirlListAdapter mAdapter;
@@ -90,14 +90,14 @@ public class TestFrescoActivity extends BaseActivity<FrescoModel, FrescoPresente
     }
 
     class GirlHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.sdv_girl)
+        @BindView(R.id.sdv_girl)
         SimpleDraweeView showGirl;
-        @InjectView(R.id.tv_girl_describe)
+        @BindView(R.id.tv_girl_describe)
         TextView showGirlDescribe;
 
         public GirlHolder(View itemView) {
             super(itemView);
-            ButterKnife.inject(this, itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void setDate(int position) {

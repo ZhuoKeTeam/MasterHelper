@@ -6,7 +6,7 @@ apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.team.zhuoke.masterhelper"
         minSdkVersion 15
@@ -25,6 +25,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 def SUPPORT_VERSION = "25.0.0"
@@ -38,7 +42,8 @@ dependencies {
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'com.yalantis:contextmenu:1.0.7'
     compile 'cn.trinea.android.common:trinea-android-common:4.2.15'
-    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
     //  网络依赖库日志打印
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     // log

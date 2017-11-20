@@ -31,7 +31,6 @@ import com.team.zhuoke.masterhelper.bean.MasterInfoBean;
 import com.team.zhuoke.masterhelper.fragment.BaseMainFragment;
 import com.team.zhuoke.masterhelper.utils.adapter.BaseAdapter;
 import com.team.zhuoke.masterhelper.utils.adapter.CommonAdapter;
-import com.team.zhuoke.masterhelper.view.test.activity.TestActivity2;
 import com.team.zhuoke.masterhelper.view.test.activity.TestFresco2Activity;
 import com.team.zhuoke.masterhelper.view.test.activity.TestFrescoActivity;
 import com.team.zhuoke.masterhelper.view.test.activity.TestSharePreferencesActivity;
@@ -46,8 +45,8 @@ import com.zhy.http.okhttp.request.RequestCall;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import okhttp3.Call;
 import wq.gdy005.mvp.TestActivity3;
 
@@ -55,15 +54,15 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
 
     private static final String TAG = "MainFragment";
 
-    @InjectView(R.id.main_fragment_tb_bar)
+    @BindView(R.id.main_fragment_tb_bar)
     Toolbar mToolBar;
-    @InjectView(R.id.main_fragment_tb_bar_container)
+    @BindView(R.id.main_fragment_tb_bar_container)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @InjectView(R.id.main_fragment_tb_bar_header_layout)
+    @BindView(R.id.main_fragment_tb_bar_header_layout)
     AppBarLayout mAppBarLayout;
-    @InjectView(R.id.main_fragment_rv_vertical)
+    @BindView(R.id.main_fragment_rv_vertical)
     RecyclerView mVerticalRecycleView;
-    @InjectView(R.id.text_view_toolbar_title)
+    @BindView(R.id.text_view_toolbar_title)
     TextView mToolBarTextView;
 
 
@@ -79,7 +78,7 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -201,7 +200,6 @@ public class MainFragment extends BaseMainFragment implements MainFragmentContra
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
     }
 
     @Override

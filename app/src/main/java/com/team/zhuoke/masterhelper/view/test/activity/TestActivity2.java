@@ -11,7 +11,7 @@ import com.team.zhuoke.masterhelper.model.test.TestModel;
 import com.team.zhuoke.masterhelper.model.test.TestView;
 import com.team.zhuoke.masterhelper.presenter.test.imp.TestPresenter;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -21,9 +21,9 @@ import butterknife.OnClick;
 public class TestActivity2 extends BaseActivity<TestModel,TestPresenter> implements TestView {
 
 
-    @InjectView(R.id.edit_text)
+    @BindView(R.id.edit_text)
     EditText editText;
-    @InjectView(R.id.btn_home)
+    @BindView(R.id.btn_home)
     Button btnHome;
 
     @Override

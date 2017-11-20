@@ -59,7 +59,7 @@ public abstract class BaseFragment<M extends  BaseModel,P extends BasePresenter>
         } else {
             rootView = super.onCreateView(inflater, container, savedInstanceState);
         }
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
         bindMVP();
         onInitView(savedInstanceState);
         onEvent();
@@ -116,7 +116,6 @@ public abstract class BaseFragment<M extends  BaseModel,P extends BasePresenter>
     @Override
     public void onDestroy() {
         super.onDestroy();
-         ButterKnife.reset(this);
         if(mPresenter!=null)
         {
             ContractProxy.getInstance().unbindView(getViewImp(),mPresenter);

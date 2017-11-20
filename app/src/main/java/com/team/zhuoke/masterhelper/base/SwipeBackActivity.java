@@ -59,7 +59,7 @@ public abstract class SwipeBackActivity<M extends  BaseModel , P extends BasePre
 //            设置布局资源文件
             setContentView(getLayoutId());
 //            注解绑定
-            ButterKnife.inject(this);
+            ButterKnife.bind(this);
             bindMVP();
             onInitView(savedInstanceState);
             onEvent();
@@ -104,7 +104,6 @@ public abstract class SwipeBackActivity<M extends  BaseModel , P extends BasePre
     @Override
     protected void onDestroy() {
         super.onDestroy();
-      ButterKnife.reset(this);
         if(mPresenter!=null)
         {
             ContractProxy.getInstance().unbindView(getView(),mPresenter);

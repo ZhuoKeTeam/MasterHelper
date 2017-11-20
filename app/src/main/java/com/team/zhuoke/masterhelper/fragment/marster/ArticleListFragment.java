@@ -16,8 +16,8 @@ import com.team.zhuoke.masterhelper.fragment.ArticleInfoBean;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by renxl
@@ -26,7 +26,7 @@ import butterknife.InjectView;
 
 public class ArticleListFragment extends Fragment implements ArticleListContract.IArticleListView {
 
-    @InjectView(R.id.recycleview_articles)
+    @BindView(R.id.recycleview_articles)
     RecyclerView recycleviewArticles;
 
     private ArticleListContract.IArticleListPresenter mArticleListPresenter;
@@ -35,7 +35,7 @@ public class ArticleListFragment extends Fragment implements ArticleListContract
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_articles, null, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         mArticleListPresenter = new ArticleListPresenter(this);
         return view;
     }
@@ -66,9 +66,4 @@ public class ArticleListFragment extends Fragment implements ArticleListContract
         recycleviewArticles.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
-    }
 }
